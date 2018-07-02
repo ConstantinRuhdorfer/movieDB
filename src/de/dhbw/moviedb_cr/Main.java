@@ -4,9 +4,12 @@ import java.io.IOException;
 
 public class Main {
 
+
     public static void main(String[] args) {
+
+        MovieDB movieDB = new MovieDB();
         try {
-            readDdFile.readFile();
+            movieDB.readFile();
         } catch (IOException e) {
             e.printStackTrace();
         }

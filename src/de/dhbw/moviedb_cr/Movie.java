@@ -1,5 +1,7 @@
 package de.dhbw.moviedb_cr;
 
+import java.util.ArrayList;
+
 public class Movie {
 
     private String movietitle;
@@ -9,6 +11,9 @@ public class Movie {
     private String movieIMDVotes;
     private String movieIMDRating;
     private Integer movieID;
+
+    ArrayList<Integer> actors = new ArrayList<>();
+    ArrayList<Integer> directors = new ArrayList<>();
 
 
     Movie(
@@ -27,6 +32,14 @@ public class Movie {
         this.movieIMDVotes = movieIMDVotes;
         this.movieIMDRating = movieIMDRating;
         this.movieID = movieID;
+    }
+
+    void addActor(Integer actorId) {
+        actors.add(actorId);
+    }
+
+    void addDirector(Integer directorId) {
+        directors.add(directorId);
     }
 
     public String getMovietitle() {

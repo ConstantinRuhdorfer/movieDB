@@ -11,14 +11,27 @@ public class MovieDB {
     HashMap<Integer, Actor> actor = new HashMap<>();
     HashMap<Integer, Movie> movie = new HashMap<>();
     HashMap<Integer, Director> director = new HashMap<>();
+    HashMap<String, User> user = new HashMap<>();
 
-    HashMap<Integer, Integer> actorToMovie = new HashMap<>();
-    HashMap<Integer, Integer> movieToActor = new HashMap<>();
+    void search(String param) {
+        for(Movie value: movie.values()) {
+            if ( value.getMovietitle().contains(param) ) {
+                // TODO Implement the Body here
+            } else {
+                System.out.println("Nothing found");
+            }
+        }
+    }
 
-    HashMap<Integer, Integer> directorToMovie = new HashMap<>();
-    HashMap<Integer, Integer> movieToDirector = new HashMap<>();
+    void newRate(String name, Double rating, Integer movieId) {
+        if( user.get(name) != null ) {
+            user.get(name).addRating(movieId, rating);
+        } else {
+            user.put(name, new User(name, rating, movieId));
+        }
+    }
 
-    public void readFile() throws IOException {
+    void readFile() throws IOException {
 
         String in = null;
         String identifier = null;
@@ -26,6 +39,8 @@ public class MovieDB {
 
         Integer id;
         Integer movieId;
+
+        Double rating;
 
         String name;
         String title;
@@ -36,7 +51,7 @@ public class MovieDB {
         String movieIMDBRating;
 
         try (BufferedReader br = new BufferedReader(new FileReader("movieproject.db.txt"))) {
-            while (( in = br.readLine()) != null ) {
+            while ((in = br.readLine()) != null) {
                 if (in.contains("New_Entity: ")) {
                     identifier = in.substring(12);
                 } else {
@@ -68,17 +83,31 @@ public class MovieDB {
                             substrings = in.split("\",\"");
                             id = Integer.parseInt(substrings[0].substring(1));
                             movieId = Integer.parseInt(substrings[1].trim().substring(0, substrings[1].length() - 1));
-                            actorToMovie.put(id, movieId);
-                            movieToActor.put(movieId, id);
+
+                            actor.get(id).addMovie(movieId);
+                            movie.get(movieId).addActor(id);
+
                             break;
                         case ("\"director_id\",\"movie_id\""):
                             substrings = in.split("\",\"");
                             id = Integer.parseInt(substrings[0].substring(1));
                             movieId = Integer.parseInt(substrings[1].trim().substring(0, substrings[1].length() - 1));
-                            directorToMovie.put(id, movieId);
-                            movieToDirector.put(movieId, id);
+
+                            movie.get(movieId).addDirector(id);
+                            director.get(id).addMovie(movieId);
+
                             break;
                         case ("\"user_name\",\"rating\",\"movie_id\""):
+                            substrings = in.split("\",\"");
+                            name = substrings[0].substring(1);
+                            rating = Double.parseDouble("0" + substrings[1].trim());
+                            movieId = Integer.parseInt(substrings[2].trim().substring(0, substrings[2].length() - 1));
+
+                            if (user.get(name) != null) {
+                                user.get(name).addRating(movieId, rating);
+                            } else {
+                                user.put(name, new User(name, rating, movieId));
+                            }
                             break;
                         default:
                             break;
@@ -86,7 +115,6 @@ public class MovieDB {
                     }
                 }
             }
-            br.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

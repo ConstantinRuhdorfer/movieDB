@@ -12,18 +12,23 @@ public class Main {
             Arrays.stream(args).forEach(s -> {
                 if (s.contains("--genre")) {
                     // TODO Genre Flag found
-                }
-                else if (s.contains("--actor=")) {
+                } else if (s.contains("--actor=")) {
                     // TODO Actor
-                }
-                else if (s.contains("--director=")) {
+                } else if (s.contains("--director=")) {
 
-                }
-                else if (s.contains("--film=")) {
+                } else if (s.contains("--film=")) {
 
-                }
-                else if (s.contains("--limit=")) {
+                } else if (s.contains("--limit=")) {
 
+                } else if (s.contains("--test=true")) {
+                    /*
+                    Abfrage: Empfehlung erhalten für Genre ‘Thriller’ und Film ‘Matrix Revolutions’ mit
+                    Limit ’10'
+                    2. Abfrage: Empfehlung erhalten für Film ‘Indiana Jones and the Temple of Doom’ und
+                    Genre ‘Adventure’ mit Limit ’15'
+                    3. Abfrage: Empfehlung erhalten für Schauspieler ‘Jason Statham’ und ‘Keanu Reeves’ und
+                    Genre ‘Action’ mit Limit ’50’
+                     */
                 }
             });
         } else {

@@ -16,6 +16,21 @@ public class Movie {
     ArrayList<Integer> directors = new ArrayList<>();
 
 
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "movietitle='" + movietitle + '\'' +
+                ", moviePlot='" + moviePlot + '\'' +
+                ", genreName='" + genreName + '\'' +
+                ", movieReleased='" + movieReleased + '\'' +
+                ", movieIMDVotes='" + movieIMDVotes + '\'' +
+                ", movieIMDRating='" + movieIMDRating + '\'' +
+                ", movieID=" + movieID +
+                ", actors=" + actors +
+                ", directors=" + directors +
+                '}';
+    }
+
     Movie(
             String movieTitle,
             String moviePlot,
@@ -98,17 +113,19 @@ public class Movie {
         this.movieID = movieID;
     }
 
-    @Override
-    public String toString() {
-        return "Movie{" +
+    public ArrayList<Integer> getActors() {
+        return actors;
+    }
 
-                ", movietitle='" + movietitle + '\'' +
-                ", moviePlot='" + moviePlot + '\'' +
-                ", genreName='" + genreName + '\'' +
-                ", movieReleased='" + movieReleased + '\'' +
-                ", movieIMDVotes='" + movieIMDVotes + '\'' +
-                ", movieIMDRating='" + movieIMDRating + '\'' +
-                ", movieID=" + movieID +
-                '}';
+    public void setActors(ArrayList<Integer> actors) {
+        this.actors = actors;
+    }
+
+    public ArrayList<Integer> getDirectors() {
+        return directors;
+    }
+
+    public void setDirectors(ArrayList<Integer> directors) {
+        this.directors = directors;
     }
 }

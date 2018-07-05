@@ -12,6 +12,15 @@ public class Actor {
         this.actorID = actorID;
     }
 
+    @Override
+    public String toString() {
+        return "Actor{" +
+                "name='" + name + '\'' +
+                ", actorID=" + actorID +
+                ", movies=" + movies +
+                '}';
+    }
+
     void addMovie(Integer movieId) {
         movies.add(movieId);
     }
@@ -32,13 +41,11 @@ public class Actor {
         this.actorID = actorID;
     }
 
-    @Override
-    public String toString() {
-        return "Actor{" +
-                "name='" + name + '\'' +
-                ", actorID=" + actorID +
-                '}';
+    public ArrayList<Integer> getMovies() {
+        return movies;
     }
 
-
+    public void setMovies(ArrayList<Integer> movies) {
+        this.movies = movies;
+    }
 }

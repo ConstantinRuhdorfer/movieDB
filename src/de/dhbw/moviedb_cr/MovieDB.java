@@ -14,8 +14,8 @@ public class MovieDB {
     HashMap<String, User> user = new HashMap<>();
 
     void search(String param) {
-        for(Movie value: movie.values()) {
-            if ( value.getMovietitle().contains(param) ) {
+        for (Movie value : movie.values()) {
+            if (value.getMovietitle().contains(param)) {
                 // TODO Implement the Body here
             } else {
                 System.out.println("Nothing found");
@@ -24,11 +24,21 @@ public class MovieDB {
     }
 
     void newRate(String name, Double rating, Integer movieId) {
-        if( user.get(name) != null ) {
+        if (user.get(name) != null) {
             user.get(name).addRating(movieId, rating);
         } else {
             user.put(name, new User(name, rating, movieId));
         }
+    }
+
+    @Override
+    public String toString() {
+        return "MovieDB{" +
+                "actor=" + actor +
+                ", movie=" + movie +
+                ", director=" + director +
+                ", user=" + user +
+                '}';
     }
 
     void readFile() throws IOException {
@@ -119,5 +129,37 @@ public class MovieDB {
             e.printStackTrace();
         }
 
+    }
+
+    public HashMap<Integer, Actor> getActor() {
+        return actor;
+    }
+
+    public void setActor(HashMap<Integer, Actor> actor) {
+        this.actor = actor;
+    }
+
+    public HashMap<Integer, Movie> getMovie() {
+        return movie;
+    }
+
+    public void setMovie(HashMap<Integer, Movie> movie) {
+        this.movie = movie;
+    }
+
+    public HashMap<Integer, Director> getDirector() {
+        return director;
+    }
+
+    public void setDirector(HashMap<Integer, Director> director) {
+        this.director = director;
+    }
+
+    public HashMap<String, User> getUser() {
+        return user;
+    }
+
+    public void setUser(HashMap<String, User> user) {
+        this.user = user;
     }
 }

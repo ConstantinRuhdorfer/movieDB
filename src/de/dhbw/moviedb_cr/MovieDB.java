@@ -4,6 +4,7 @@ package de.dhbw.moviedb_cr;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MovieDB {
@@ -13,14 +14,17 @@ public class MovieDB {
     HashMap<Integer, Director> director = new HashMap<>();
     HashMap<String, User> user = new HashMap<>();
 
-    void search(String param) {
+    ArrayList<Movie> searchMovies(String param) {
+
+        ArrayList<Movie> results = new ArrayList<>();
+
         for (Movie value : movie.values()) {
             if (value.getMovietitle().contains(param)) {
-                // TODO Implement the Body here
-            } else {
-                System.out.println("Nothing found");
+                results.add(value);
             }
         }
+
+        return results;
     }
 
     void newRate(String name, Double rating, Integer movieId) {
@@ -39,6 +43,76 @@ public class MovieDB {
                 ", director=" + director +
                 ", user=" + user +
                 '}';
+    }
+
+    void getRecommendations(ArrayList<String> actors, ArrayList<String> films, ArrayList<String> directors, ArrayList<String> genres, Integer limit) {
+        Double weight;
+        ArrayList<Integer> currentID;
+        ArrayList<String> currentName;
+        ArrayList<Movie> currentMovies;
+        ArrayList<User> currentUser;
+
+        ArrayList<Movie> ratedByOtherUsers = new ArrayList<>();
+
+
+        for (String _film : films) {
+            currentMovies = searchMovies(_film);
+            for (Movie _movie : currentMovies) {
+                currentUser = _movie.getRatedBy();
+                for (User _user : currentUser) {
+                    currentID = _user.getRatedMovieIDs();
+                    for (Integer id : currentID) {
+                        ratedByOtherUsers.add(movie.get(id));
+                    }
+                }
+            }
+        }
+
+
+        for (Movie movie : movie.values()) {
+
+            weight = 1.0;
+
+            for (Movie relatedMovie : ratedByOtherUsers) {
+                if (movie.equals(relatedMovie)) {
+                    weight = weight * 1.5;
+                }
+            }
+
+
+            currentID = movie.getActors();
+            for (Integer id : currentID) {
+                for (String name : actors) {
+                    if (name.equals(actor.get(id).getName())) {
+                        weight = weight * 2;
+                    }
+                }
+            }
+
+            currentID = movie.getDirectors();
+            for (Integer id : currentID) {
+                for (String name : directors) {
+                    if (name.equals(director.get(id).getName())) {
+                        weight = weight * 2;
+                    }
+                }
+            }
+
+            currentName = movie.getGenreNames();
+            for (String genre : currentName) {
+                for (String name : genres) {
+                    if (name.equals(genre)) {
+                        weight = weight * 2;
+                    }
+                }
+            }
+
+            weight = weight * movie.getMovieIMDBRating();
+
+            System.out.println(weight);
+
+            movie.setCurrentWeight(weight);
+        }
     }
 
     void readFile() throws IOException {
@@ -81,7 +155,9 @@ public class MovieDB {
                             movieReleased = substrings[4].trim();
                             movieIMDBVotes = substrings[5].trim();
                             movieIMDBRating = substrings[6].trim().substring(0, substrings[6].length() - 1);
-                            movie.put(id, new Movie(title, plot, genre, movieReleased, movieIMDBVotes, movieIMDBRating, id));
+                            rating = Double.parseDouble("0" + movieIMDBRating);
+                            movie.put(id, new Movie(title, plot, movieReleased, movieIMDBVotes, rating, id));
+                            movie.get(id).addGenre(genre);
                             break;
                         case ("\"director_id\",\"director_name\""):
                             substrings = in.split("\",\"");
@@ -112,12 +188,15 @@ public class MovieDB {
                             name = substrings[0].substring(1);
                             rating = Double.parseDouble("0" + substrings[1].trim());
                             movieId = Integer.parseInt(substrings[2].trim().substring(0, substrings[2].length() - 1));
+                            User newUser = new User(name, rating, movieId);
 
                             if (user.get(name) != null) {
                                 user.get(name).addRating(movieId, rating);
                             } else {
-                                user.put(name, new User(name, rating, movieId));
+                                user.put(name, newUser);
+                                movie.get(movieId).addRatedBy(newUser);
                             }
+
                             break;
                         default:
                             break;
@@ -129,6 +208,11 @@ public class MovieDB {
             e.printStackTrace();
         }
 
+    }
+
+    void runTest() {
+        System.out.println("Some Test");
+        // TODO Implement the test
     }
 
     public HashMap<Integer, Actor> getActor() {

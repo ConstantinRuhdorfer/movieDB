@@ -1,16 +1,19 @@
 package de.dhbw.moviedb_cr;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class User {
 
     private String name;
     HashMap<Integer, Double> ratedMovie = new HashMap<Integer, Double>();
+    ArrayList<Integer> ratedMovieIDs = new ArrayList<>();
 
     User(String name, Double rating, Integer movieId) {
         this.name = name;
         ratedMovie.put(movieId, rating);
+        ratedMovieIDs.add(movieId);
     }
 
     void addRating(Integer movieId, Double rating) {
@@ -39,5 +42,13 @@ public class User {
 
     public void setRatedMovie(HashMap<Integer, Double> ratedMovie) {
         this.ratedMovie = ratedMovie;
+    }
+
+    public ArrayList<Integer> getRatedMovieIDs() {
+        return ratedMovieIDs;
+    }
+
+    public void setRatedMovieIDs(ArrayList<Integer> ratedMovieIDs) {
+        this.ratedMovieIDs = ratedMovieIDs;
     }
 }

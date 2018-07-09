@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MovieDB {
 
@@ -45,7 +47,7 @@ public class MovieDB {
                 '}';
     }
 
-    void getRecommendations(ArrayList<String> actors, ArrayList<String> films, ArrayList<String> directors, ArrayList<String> genres, Integer limit) {
+    List<Movie> getRecommendations (ArrayList<String> actors, ArrayList<String> films, ArrayList<String> directors, ArrayList<String> genres, Integer limit) {
         Double weight;
         ArrayList<Integer> currentID;
         ArrayList<String> currentName;
@@ -75,7 +77,7 @@ public class MovieDB {
 
             for (Movie relatedMovie : ratedByOtherUsers) {
                 if (movie.equals(relatedMovie)) {
-                    weight = weight * 1.5;
+                    weight = weight * 1.1;
                 }
             }
 
@@ -109,10 +111,14 @@ public class MovieDB {
 
             weight = weight * movie.getMovieIMDBRating();
 
-            System.out.println(weight);
-
             movie.setCurrentWeight(weight);
         }
+
+        List<Movie> recommendationArray = new ArrayList<>(movie.values());
+
+        recommendationArray = recommendationArray.stream().sorted().limit(limit).collect(Collectors.toList());
+
+        return recommendationArray;
     }
 
     void readFile() throws IOException {

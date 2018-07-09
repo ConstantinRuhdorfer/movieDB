@@ -2,7 +2,7 @@ package de.dhbw.moviedb_cr;
 
 import java.util.ArrayList;
 
-public class Movie {
+public class Movie implements Comparable {
 
     private String movietitle;
     private String moviePlot;
@@ -65,6 +65,12 @@ public class Movie {
             this.movieIMDBRating = 1.0;
         }
         this.movieID = movieID;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Movie other = (Movie) o;
+        return other.currentWeight.compareTo(this.currentWeight);
     }
 
     void addGenre(String genre) {
@@ -155,4 +161,6 @@ public class Movie {
     public void setCurrentWeight(Double currentWeight) {
         this.currentWeight = currentWeight;
     }
+
+
 }

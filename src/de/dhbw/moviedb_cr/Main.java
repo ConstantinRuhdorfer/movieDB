@@ -36,7 +36,7 @@ public class Main {
                 } else if (s.contains("--film=")) {
                     filmArg = extractArguments(s);
                 } else if (s.contains("--limit=")) {
-                    limitArg = s.substring(8);
+                    limitArg = s.substring(0,s.length() -1 ).substring(9);
                 } else if (s.contains("--test=true")) {
 
                     test = true;

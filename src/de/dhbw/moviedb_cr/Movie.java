@@ -14,7 +14,7 @@ public class Movie implements Comparable {
     private Double currentWeight;
 
     ArrayList<String> genreNames = new ArrayList<>();
-    ArrayList<User> ratedBy = new ArrayList<>();
+    ArrayList<String> ratedBy = new ArrayList<>();
     ArrayList<Integer> actors = new ArrayList<>();
     ArrayList<Integer> directors = new ArrayList<>();
 
@@ -32,20 +32,6 @@ public class Movie implements Comparable {
 
     public void setMovieIMDBRating(Double movieIMDBRating) {
         this.movieIMDBRating = movieIMDBRating;
-    }
-
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "movietitle='" + movietitle + '\'' +
-                ", moviePlot='" + moviePlot + '\'' +
-                ", movieReleased='" + movieReleased + '\'' +
-                ", movieIMDVotes='" + movieIMDBVotes + '\'' +
-                ", movieIMDRating='" + movieIMDBRating + '\'' +
-                ", movieID=" + movieID +
-                ", actors=" + actors +
-                ", directors=" + directors +
-                '}';
     }
 
     Movie(
@@ -68,6 +54,23 @@ public class Movie implements Comparable {
     }
 
     @Override
+    public String toString() {
+        return "Movie{" +
+                "movietitle='" + movietitle + '\'' +
+                ", moviePlot='" + moviePlot + '\'' +
+                ", movieReleased='" + movieReleased + '\'' +
+                ", movieIMDBVotes='" + movieIMDBVotes + '\'' +
+                ", movieIMDBRating=" + movieIMDBRating +
+                ", movieID=" + movieID +
+                ", currentWeight=" + currentWeight +
+                ", genreNames=" + genreNames +
+                ", ratedBy=" + ratedBy +
+                ", actors=" + actors +
+                ", directors=" + directors +
+                '}';
+    }
+
+    @Override
     public int compareTo(Object o) {
         Movie other = (Movie) o;
         return other.currentWeight.compareTo(this.currentWeight);
@@ -86,15 +89,15 @@ public class Movie implements Comparable {
     }
 
 
-    void addRatedBy(User user) {
-        ratedBy.add(user);
+    void addRatedBy(String name) {
+        ratedBy.add(name);
     }
 
-    public ArrayList<User> getRatedBy() {
+    public ArrayList<String> getRatedBy() {
         return ratedBy;
     }
 
-    public void setRatedBy(ArrayList<User> ratedBy) {
+    public void setRatedBy(ArrayList<String> ratedBy) {
         this.ratedBy = ratedBy;
     }
 

@@ -45,7 +45,13 @@ public class Main {
             }
             if (!test) {
                 limit = Integer.parseInt(limitArg);
-                movieDB.getRecommendations(actorsArg, filmArg, directorArg, genreArg, limit);
+                movieDB.getRecommendations(
+                        actorsArg,
+                        filmArg,
+                        directorArg,
+                        genreArg,
+                        limit
+                );
             }
         } else {
             //TODO interaktiver modus
@@ -54,7 +60,12 @@ public class Main {
 
     private static ArrayList<String> extractArguments(String s) {
 
-        return new ArrayList<>(Arrays.asList(s.substring(s.indexOf("=") + 1).split(",")));
+        return new ArrayList<>(
+                Arrays.asList(
+                        s.substring(
+                                s.indexOf("=") + 1)
+                                .split(",")
+                ));
 
     }
 }

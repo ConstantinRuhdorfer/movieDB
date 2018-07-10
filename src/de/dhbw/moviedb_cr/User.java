@@ -20,6 +20,8 @@ public class User {
         ratedMovie.put(movieId, rating);
     }
 
+    void addRated(Integer movieId) { ratedMovieIDs.add(movieId); }
+
     @Override
     public String toString() {
         return "User{" +

@@ -33,34 +33,27 @@ public class MovieDB {
         }
     }
 
-    @Override
-    public String toString() {
-        return "MovieDB{" +
-                "actor=" + actor +
-                ", movie=" + movie +
-                ", director=" + director +
-                ", user=" + user +
-                '}';
-    }
 
     List<Movie> getRecommendations(ArrayList<String> actors, ArrayList<String> films, ArrayList<String> directors, ArrayList<String> genres, Integer limit) {
+
         Double weight;
         ArrayList<Integer> currentID;
         ArrayList<String> currentName;
         ArrayList<Movie> currentMovies;
-        ArrayList<User> currentUser;
 
         ArrayList<Movie> ratedByOtherUsers = new ArrayList<>();
-
 
         for (String _film : films) {
             currentMovies = searchMovies(_film);
             for (Movie _movie : currentMovies) {
-                currentUser = _movie.getRatedBy();
-                for (User _user : currentUser) {
+                currentName = _movie.getRatedBy();
+                for (String name : currentName) {
+                    User _user = user.get(name);
                     currentID = _user.getRatedMovieIDs();
                     for (Integer id : currentID) {
-                        ratedByOtherUsers.add(movie.get(id));
+                        if (_user.getRatedMovie().get(id) > 5.0 ) {
+                            ratedByOtherUsers.add(movie.get(id));
+                        }
                     }
                 }
             }
@@ -194,9 +187,9 @@ public class MovieDB {
 
                             if (user.get(name) != null) {
                                 user.get(name).addRating(movieId, rating);
+                                user.get(name).addRated(movieId);
                             } else {
                                 user.put(name, newUser);
-                                movie.get(movieId).addRatedBy(newUser);
                             }
 
                             break;
@@ -210,6 +203,15 @@ public class MovieDB {
             e.printStackTrace();
         }
 
+        // TODO Broken
+
+        for(User _user: user.values()) {
+            ArrayList<Integer> idRatedByUser = _user.getRatedMovieIDs();
+
+            for (Integer _id: idRatedByUser) {
+                movie.get(_id).addRatedBy(_user.getName());
+            }
+        }
     }
 
     void runTest() throws IOException {
@@ -223,9 +225,10 @@ public class MovieDB {
         ArrayList<String> genre = new ArrayList<String>(Arrays.asList("Thriller"));
         Integer limit = 10;
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("test.txt"));
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("test_" + new Date().getTime() + ".txt"));
         ) {
-            bw.write("First Recommendation below:\nParams: film = Matrix Revolutions, genre = Thriller, Limit = 10\n");
+            bw.write("First Recommendation below:\n" +
+                    "Params: film = Matrix Revolutions, genre = Thriller, Limit = 10\n");
 
             testRecommendation = getRecommendations(
                     actors,
@@ -234,9 +237,12 @@ public class MovieDB {
                     genre,
                     limit
             );
-            bw.write(testRecommendation.toString());
+            for(Movie movie: testRecommendation) {
+                bw.write(movie.toString() + "\n");
+            }
 
-            bw.write("\nSecond Recommendation below:\nParams: film = Indiana Jones and the Temple of Doom , genre = Adventure, Limit = 15\n");
+            bw.write("\nSecond Recommendation below:\n" +
+                    "Params: film = Indiana Jones and the Temple of Doom , genre = Adventure, Limit = 15\n");
 
             films = new ArrayList<>(Collections.singletonList("Indiana Jones and the Temple of Doom"));
             genre = new ArrayList<>(Collections.singletonList("Adventure"));
@@ -249,11 +255,14 @@ public class MovieDB {
                     genre,
                     limit
             );
-            bw.write(testRecommendation.toString());
+            for(Movie movie: testRecommendation) {
+                bw.write(movie.toString()+ "\n");
+            }
 
-            bw.write("\nThird Recommendation below:\nParams: actors = Jason Statham + Keanu Reeves , genre = Action, Limit = 50\n");
+            bw.write("\nThird Recommendation below:" +
+                    "\nParams: actors = Jason Statham + Keanu Reeves , genre = Action, Limit = 50\n");
 
-            actors = new ArrayList<>(Arrays.asList("Jason Statham","Keanu Reeves"));
+            actors = new ArrayList<>(Arrays.asList("Jason Statham", "Keanu Reeves"));
             films = new ArrayList<>(Collections.emptyList());
             genre = new ArrayList<>(Collections.singletonList("Action"));
             limit = 50;
@@ -265,12 +274,25 @@ public class MovieDB {
                     genre,
                     limit
             );
-            bw.write(testRecommendation.toString());
+
+            for(Movie movie: testRecommendation) {
+                bw.write(movie.toString() + "\n");
+            }
 
             bw.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public String toString() {
+        return "MovieDB{" +
+                "actor=" + actor +
+                ", movie=" + movie +
+                ", director=" + director +
+                ", user=" + user +
+                '}';
     }
 
     public HashMap<Integer, Actor> getActor() {

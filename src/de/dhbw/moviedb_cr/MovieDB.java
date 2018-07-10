@@ -1,12 +1,8 @@
 package de.dhbw.moviedb_cr;
 
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class MovieDB {
@@ -47,7 +43,7 @@ public class MovieDB {
                 '}';
     }
 
-    List<Movie> getRecommendations (ArrayList<String> actors, ArrayList<String> films, ArrayList<String> directors, ArrayList<String> genres, Integer limit) {
+    List<Movie> getRecommendations(ArrayList<String> actors, ArrayList<String> films, ArrayList<String> directors, ArrayList<String> genres, Integer limit) {
         Double weight;
         ArrayList<Integer> currentID;
         ArrayList<String> currentName;
@@ -85,8 +81,8 @@ public class MovieDB {
             currentID = movie.getActors();
             for (Integer id : currentID) {
                 for (String name : actors) {
-                    if (name.equals(actor.get(id).getName())) {
-                        weight = weight * 2;
+                    if (actor.get(id).getName().contains(name)) {
+                        weight = weight * 2.1;
                     }
                 }
             }
@@ -94,7 +90,7 @@ public class MovieDB {
             currentID = movie.getDirectors();
             for (Integer id : currentID) {
                 for (String name : directors) {
-                    if (name.equals(director.get(id).getName())) {
+                    if (director.get(id).getName().contains(name)) {
                         weight = weight * 2;
                     }
                 }
@@ -216,9 +212,65 @@ public class MovieDB {
 
     }
 
-    void runTest() {
-        System.out.println("Some Test");
-        // TODO Implement the test
+    void runTest() throws IOException {
+
+        System.out.println("Running Test");
+        List<Movie> testRecommendation = new ArrayList<>();
+
+        ArrayList<String> actors = new ArrayList<>();
+        ArrayList<String> films = new ArrayList<String>(Arrays.asList("Matrix Revolutions"));
+        ArrayList<String> directors = new ArrayList<>();
+        ArrayList<String> genre = new ArrayList<String>(Arrays.asList("Thriller"));
+        Integer limit = 10;
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("test.txt"));
+        ) {
+            bw.write("First Recommendation below:\nParams: film = Matrix Revolutions, genre = Thriller, Limit = 10\n");
+
+            testRecommendation = getRecommendations(
+                    actors,
+                    films,
+                    directors,
+                    genre,
+                    limit
+            );
+            bw.write(testRecommendation.toString());
+
+            bw.write("\nSecond Recommendation below:\nParams: film = Indiana Jones and the Temple of Doom , genre = Adventure, Limit = 15\n");
+
+            films = new ArrayList<>(Collections.singletonList("Indiana Jones and the Temple of Doom"));
+            genre = new ArrayList<>(Collections.singletonList("Adventure"));
+            limit = 15;
+
+            testRecommendation = getRecommendations(
+                    actors,
+                    films,
+                    directors,
+                    genre,
+                    limit
+            );
+            bw.write(testRecommendation.toString());
+
+            bw.write("\nThird Recommendation below:\nParams: actors = Jason Statham + Keanu Reeves , genre = Action, Limit = 50\n");
+
+            actors = new ArrayList<>(Arrays.asList("Jason Statham","Keanu Reeves"));
+            films = new ArrayList<>(Collections.emptyList());
+            genre = new ArrayList<>(Collections.singletonList("Action"));
+            limit = 50;
+
+            testRecommendation = getRecommendations(
+                    actors,
+                    films,
+                    directors,
+                    genre,
+                    limit
+            );
+            bw.write(testRecommendation.toString());
+
+            bw.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public HashMap<Integer, Actor> getActor() {

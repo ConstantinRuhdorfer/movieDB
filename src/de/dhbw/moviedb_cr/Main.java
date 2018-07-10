@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         MovieDB movieDB = new MovieDB();
         ArrayList<String> genreArg = new ArrayList<>();
@@ -36,14 +36,14 @@ public class Main {
                 } else if (s.contains("--film=")) {
                     filmArg = extractArguments(s);
                 } else if (s.contains("--limit=")) {
-                    limitArg = s.substring(0,s.length() -1 ).substring(9);
+                    limitArg = s.substring(8);
                 } else if (s.contains("--test=true")) {
 
                     test = true;
                     movieDB.runTest();
                 }
             }
-            if ( !test ) {
+            if (!test) {
                 limit = Integer.parseInt(limitArg);
                 movieDB.getRecommendations(actorsArg, filmArg, directorArg, genreArg, limit);
             }
@@ -52,9 +52,9 @@ public class Main {
         }
     }
 
-    static ArrayList<String> extractArguments (String s) {
+    private static ArrayList<String> extractArguments(String s) {
 
-        return new ArrayList<>( Arrays.asList(s.substring(0, s.length() - 1).substring(s.indexOf("=\'") + 2).split(",")));
+        return new ArrayList<>(Arrays.asList(s.substring(s.indexOf("=") + 1).split(",")));
 
     }
 }

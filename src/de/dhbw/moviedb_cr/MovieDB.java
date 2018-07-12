@@ -142,6 +142,7 @@ public class MovieDB {
                             actor.put(id, new Actor(name, id));
                             break;
                         case ("\"movie_id\",\"movie_title\",\"movie_plot\",\"genre_name\",\"movie_released\",\"movie_imdbVotes\",\"movie_imdbRating\""):
+
                             substrings = in.split("\",\"");
                             id = Integer.parseInt(substrings[0].substring(1));
                             title = substrings[1].trim();
@@ -151,8 +152,13 @@ public class MovieDB {
                             movieIMDBVotes = substrings[5].trim();
                             movieIMDBRating = substrings[6].trim().substring(0, substrings[6].length() - 1);
                             rating = Double.parseDouble("0" + movieIMDBRating);
-                            movie.put(id, new Movie(title, plot, movieReleased, movieIMDBVotes, rating, id));
-                            movie.get(id).addGenre(genre);
+
+                            if (movie.get(id) != null) {
+                                movie.get(id).addGenre(genre);
+                            } else {
+                                movie.put(id, new Movie(title, plot, movieReleased, movieIMDBVotes, rating, id));
+                            }
+
                             break;
                         case ("\"director_id\",\"director_name\""):
                             substrings = in.split("\",\"");
@@ -202,8 +208,6 @@ public class MovieDB {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        // TODO Broken
 
         for(User _user: user.values()) {
             ArrayList<Integer> idRatedByUser = _user.getRatedMovieIDs();

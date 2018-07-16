@@ -12,6 +12,10 @@ public class MovieDB {
     HashMap<Integer, Director> director = new HashMap<>();
     HashMap<String, User> user = new HashMap<>();
 
+    MovieDB() {
+        readFile();
+    }
+
     ArrayList<Movie> searchMovies(String param) {
 
         ArrayList<Movie> results = new ArrayList<>();
@@ -27,14 +31,19 @@ public class MovieDB {
 
     void newRate(String name, Double rating, Integer movieId) {
         if (user.get(name) != null) {
-            user.get(name).addRating(movieId, rating);
+            if (user.get(name).ratedMovieIDs.contains(movieId)) {
+                user.get(name).addRating(movieId, rating);
+            } else {
+                user.get(name).addRating(movieId, rating);
+                user.get(name).addRated(movieId);
+            }
         } else {
             user.put(name, new User(name, rating, movieId));
-            writeRating(name, rating, movieId);
         }
+        writeRating(name, rating, movieId);
     }
 
-    void writeRating(String name, Double rating, Integer movieId) {
+    private void writeRating(String name, Double rating, Integer movieId) {
         final String newLine = System.getProperty("line.separator");
         String toWrite = String.format("\"%s\",\"%f\",\"%d\"", name, rating, movieId);
         PrintWriter printWriter = null;
@@ -52,14 +61,16 @@ public class MovieDB {
     }
 
 
-    List<Movie> getRecommendations(ArrayList<String> actors, ArrayList<String> films, ArrayList<String> directors, ArrayList<String> genres, Integer limit) {
+    List<Movie> getRecommendations(ArrayList<String> actors, ArrayList<String> films, ArrayList<String> directors, ArrayList<String> genres, Integer limit, String userName) {
 
         Double weight;
         ArrayList<Integer> currentID;
         ArrayList<String> currentName;
         ArrayList<Movie> currentMovies;
 
-        ArrayList<Movie> ratedByOtherUsers = new ArrayList<>();
+        ArrayList<Movie> likedByOtherUsers = new ArrayList<>();
+
+        User currentUser = user.get(userName);
 
         for (String _film : films) {
             currentMovies = searchMovies(_film);
@@ -69,9 +80,15 @@ public class MovieDB {
                     User _user = user.get(name);
                     currentID = _user.getRatedMovieIDs();
                     for (Integer id : currentID) {
-                        if (_user.getRatedMovie().get(id) > 5.0 ) {
-                            ratedByOtherUsers.add(movie.get(id));
+                        if (_user.getRatedMovie().get(id) >= 3.5) {
+                            likedByOtherUsers.add(movie.get(id));
                         }
+                    }
+                }
+                currentID = currentUser.getRatedMovieIDs();
+                for(Integer id: currentID) {
+                    if (currentUser.getRatedMovie().get(id) >= 3.5) {
+                        likedByOtherUsers.add(movie.get(id));
                     }
                 }
             }
@@ -82,9 +99,9 @@ public class MovieDB {
 
             weight = 1.0;
 
-            for (Movie relatedMovie : ratedByOtherUsers) {
+            for (Movie relatedMovie : likedByOtherUsers) {
                 if (movie.equals(relatedMovie)) {
-                    weight = weight * 1.1;
+                    weight = weight * 1.01;
                 }
             }
 
@@ -111,7 +128,7 @@ public class MovieDB {
             for (String genre : currentName) {
                 for (String name : genres) {
                     if (name.equals(genre)) {
-                        weight = weight * 2;
+                        weight = weight * 2.1;
                     }
                 }
             }
@@ -210,8 +227,12 @@ public class MovieDB {
                             User newUser = new User(name, rating, movieId);
 
                             if (user.get(name) != null) {
-                                user.get(name).addRating(movieId, rating);
-                                user.get(name).addRated(movieId);
+                                if (user.get(name).ratedMovieIDs.contains(movieId)) {
+                                    user.get(name).addRating(movieId, rating);
+                                } else {
+                                    user.get(name).addRating(movieId, rating);
+                                    user.get(name).addRated(movieId);
+                                }
                             } else {
                                 user.put(name, newUser);
                             }
@@ -227,10 +248,10 @@ public class MovieDB {
             e.printStackTrace();
         }
 
-        for(User _user: user.values()) {
+        for (User _user : user.values()) {
             ArrayList<Integer> idRatedByUser = _user.getRatedMovieIDs();
 
-            for (Integer _id: idRatedByUser) {
+            for (Integer _id : idRatedByUser) {
                 movie.get(_id).addRatedBy(_user.getName());
             }
         }
@@ -238,7 +259,7 @@ public class MovieDB {
 
     void runTest() {
 
-        System.out.println("Running LogicTest");
+        System.out.println("Lasse Test laufen und schreibe Output...");
         List<Movie> testRecommendation = new ArrayList<>();
 
         ArrayList<String> actors = new ArrayList<>();
@@ -247,8 +268,7 @@ public class MovieDB {
         ArrayList<String> genre = new ArrayList<String>(Arrays.asList("Thriller"));
         Integer limit = 10;
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("test_" + new Date().getTime() + ".txt"));
-        ) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("test_" + new Date().getTime() + ".txt"))) {
             bw.write("First Recommendation below:\n" +
                     "Params: film = Matrix Revolutions, genre = Thriller, Limit = 10\n");
 
@@ -257,9 +277,10 @@ public class MovieDB {
                     films,
                     directors,
                     genre,
-                    limit
+                    limit,
+                    null
             );
-            for(Movie movie: testRecommendation) {
+            for (Movie movie : testRecommendation) {
                 bw.write(movie.toString() + "\n");
             }
 
@@ -275,10 +296,11 @@ public class MovieDB {
                     films,
                     directors,
                     genre,
-                    limit
+                    limit,
+                    null
             );
-            for(Movie movie: testRecommendation) {
-                bw.write(movie.toString()+ "\n");
+            for (Movie movie : testRecommendation) {
+                bw.write(movie.toString() + "\n");
             }
 
             bw.write("\nThird Recommendation below:" +
@@ -294,10 +316,11 @@ public class MovieDB {
                     films,
                     directors,
                     genre,
-                    limit
+                    limit,
+                    null
             );
 
-            for(Movie movie: testRecommendation) {
+            for (Movie movie : testRecommendation) {
                 bw.write(movie.toString() + "\n");
             }
 

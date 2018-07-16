@@ -1,6 +1,5 @@
 package de.dhbw.moviedb_cr;
 
-import java.io.IOException;
 import java.util.*;
 
 public class Main {
@@ -20,8 +19,6 @@ public class Main {
 
         Boolean test = false;
 
-
-        movieDB.readFile();
 
         if (args.length != 0) {
             for (String s : args) {
@@ -48,7 +45,8 @@ public class Main {
                         filmArg,
                         directorArg,
                         genreArg,
-                        limit
+                        limit,
+                        null
                 );
                 recommendations.forEach(movie -> {
                     System.out.println(movie.getMovietitle());
@@ -135,7 +133,7 @@ public class Main {
                         limit = Integer.parseInt(line);
 
                         System.out.println("Magie...");
-                        recommendations = movieDB.getRecommendations(actor, film, director, genres, limit);
+                        recommendations = movieDB.getRecommendations(actor, film, director, genres, limit, userName);
                         System.out.println("...und peng!");
                         System.out.println("Möchtest du nur Filmtitel oder auch mehr Details?");
                         System.out.println("[1] Filmtitel.");
@@ -181,24 +179,30 @@ public class Main {
                             line = scanner.nextLine();
                             rating = Double.parseDouble(line);
                             Integer _id = recommendations.get(0).getMovieID();
-                            rating = Double.parseDouble(line);
                             movieDB.newRate(userName, rating, _id);
                         } else {
                             System.out.println("Sieht aus als hätten wir mehr als einen Film gefunden!");
+                            Integer i = 0;
                             for (Movie movie : recommendations) {
-                                System.out.println(movie.getMovietitle());
+                                System.out.println("[" + i + "] " + movie.getMovietitle());
+                                i++;
                             }
-                            System.out.println("Welchen Film davon meinst du? Kopier einfach seinen genauen Titel!");
+                            System.out.println("Welchen Film davon meinst du? Benutz einfach seine Nummer!");
                             line = scanner.nextLine();
-                            recommendations = movieDB.searchMovies(line);
-                            if (recommendations.size() == 1) {
+                            if ( recommendations.size() >= (Integer.parseInt(line) + 1)) {
+                                Movie choosenMovie = recommendations.get(Integer.parseInt(line));
+                                System.out.println("Du hast dich für " + choosenMovie.getMovietitle() + " entschieden.");
+                                Integer _id = choosenMovie.getMovieID();
                                 System.out.println("Gib dem Film zwischen 1 und 5 Sternen:");
-                                Integer _id = recommendations.get(0).getMovieID();
                                 line = scanner.nextLine();
                                 rating = Double.parseDouble(line);
-                                movieDB.newRate(userName, rating, _id);
+                                if ((rating >= 1.0) && (rating <= 5.0)) {
+                                    movieDB.newRate(userName, rating, _id);
+                                } else {
+                                    System.out.println("Fehler!\nDeine Bewertung muss zwischen 1 und 5 Sternen liegen.");
+                                }
                             } else {
-                                System.out.println("Tut mir Leid! Etwas ist schief gelaufen.");
+                                System.out.println("Fehler!\nDeine Zahl hat keiner der angebotenen Zahlen entsprochen.");
                             }
                         }
                         break;

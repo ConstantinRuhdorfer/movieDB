@@ -57,4 +57,5 @@ public class User {
     public void setRatedMovieIDs(ArrayList<Integer> ratedMovieIDs) {
         this.ratedMovieIDs = ratedMovieIDs;
     }
+
 }

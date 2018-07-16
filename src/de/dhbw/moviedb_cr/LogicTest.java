@@ -10,7 +10,7 @@ import java.util.List;
 
 public class LogicTest {
 
-    MovieDB movieDB = new MovieDB();
+    final MovieDB movieDB = new MovieDB();
 
     @Test
     void testRecommendationsLimit() {
@@ -37,5 +37,14 @@ public class LogicTest {
     void testSearch() {
 
         assertEquals(4,  movieDB.searchMovies("Matrix").size() );
+    }
+
+    @Test
+    void testTestFlag() {
+        String args[] = {"--test=true","--limit=\"10\"","--genre=\"Fantasy\""};
+
+        Main.main(args);
+
+
     }
 }

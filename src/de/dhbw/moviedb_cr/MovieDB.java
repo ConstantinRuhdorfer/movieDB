@@ -17,7 +17,7 @@ public class MovieDB {
         ArrayList<Movie> results = new ArrayList<>();
 
         for (Movie value : movie.values()) {
-            if (value.getMovietitle().contains(param)) {
+            if (value.getMovietitle().toLowerCase().contains(param.toLowerCase())) {
                 results.add(value);
             }
         }
@@ -30,6 +30,24 @@ public class MovieDB {
             user.get(name).addRating(movieId, rating);
         } else {
             user.put(name, new User(name, rating, movieId));
+            writeRating(name, rating, movieId);
+        }
+    }
+
+    void writeRating(String name, Double rating, Integer movieId) {
+        final String newLine = System.getProperty("line.separator");
+        String toWrite = String.format("\"%s\",\"%f\",\"%d\"", name, rating, movieId);
+        PrintWriter printWriter = null;
+        try {
+            printWriter = new PrintWriter(new FileOutputStream("movieproject.db.txt", true));
+            printWriter.append(newLine + toWrite);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (printWriter != null) {
+                printWriter.flush();
+                printWriter.close();
+            }
         }
     }
 
@@ -110,7 +128,7 @@ public class MovieDB {
         return recommendationArray;
     }
 
-    void readFile() throws IOException {
+    void readFile() {
 
         String in = null;
         String identifier = null;
@@ -218,9 +236,9 @@ public class MovieDB {
         }
     }
 
-    void runTest() throws IOException {
+    void runTest() {
 
-        System.out.println("Running Test");
+        System.out.println("Running LogicTest");
         List<Movie> testRecommendation = new ArrayList<>();
 
         ArrayList<String> actors = new ArrayList<>();

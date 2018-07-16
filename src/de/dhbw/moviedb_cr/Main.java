@@ -1,12 +1,11 @@
 package de.dhbw.moviedb_cr;
 
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.*;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         MovieDB movieDB = new MovieDB();
         ArrayList<String> genreArg = new ArrayList<>();
@@ -21,11 +20,8 @@ public class Main {
 
         Boolean test = false;
 
-        try {
-            movieDB.readFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        movieDB.readFile();
 
         if (args.length != 0) {
             for (String s : args) {
@@ -47,13 +43,16 @@ public class Main {
             }
             if (!test) {
                 limit = Integer.parseInt(limitArg);
-                movieDB.getRecommendations(
+                List<Movie> recommendations = movieDB.getRecommendations(
                         actorsArg,
                         filmArg,
                         directorArg,
                         genreArg,
                         limit
                 );
+                recommendations.forEach(movie -> {
+                    System.out.println(movie.getMovietitle());
+                });
             }
         } else {
             startInteractive(movieDBUsers, movieDB);
@@ -62,24 +61,28 @@ public class Main {
 
     private static void startInteractive(ArrayList<User> movieDBUsers, MovieDB movieDB) {
 
-        ArrayList<String> actor;
-        ArrayList<String> director;
-        ArrayList<String> film;
-        ArrayList<String> genres;
+        ArrayList<String> actor = new ArrayList<>();
+        ArrayList<String> director = new ArrayList<>();
+        ArrayList<String> film = new ArrayList<>();
+        ArrayList<String> genres = new ArrayList<>();
 
         ArrayList<Integer> id;
 
         Integer limit;
 
+        Boolean stop = false;
+
         List<Movie> recommendations;
 
-        User currentUser = new User("Default");
+        String userName = "DefaultUser";
+
         Scanner scanner = new Scanner(System.in);
         try {
-            while (true) {
+            while (!stop) {
 
-                System.out.println("Willkommen zur MovieDB! Was möchtest du tuen?");
-                System.out.println("[1] Benutzermanagement");
+                System.out.println("---------------------------------------------------------------");
+                System.out.println("Willkommen zur MovieDB, " + userName + "! Was möchtest du tuen?");
+                System.out.println("[1] Namen eingeben.");
                 System.out.println("[2] Nach einem Film suchen.");
                 System.out.println("[3] Filmempfehlungen erhalten.");
                 System.out.println("[4] Einen Film bewerten.");
@@ -89,33 +92,18 @@ public class Main {
 
                 switch (line) {
                     case "1":
-                        System.out.println("Willkommen zum Benutzermanagment.");
-                        System.out.println("[1] Neuer Nutzer anlegen.");
-                        System.out.println("[2] Alten Nutzer laden.");
-
+                        System.out.println("Bitte gebe einen neuen Namen ein.");
                         line = scanner.nextLine();
-
-                        switch (line) {
-                            case "1":
-                                System.out.println("Bitte gebe einen neuen Namen ein.");
-                                line = scanner.nextLine();
-                                movieDBUsers.add(new User(line));
-                                break;
-                            case "2":
-                                System.out.println("Bitte gebe den Namen des alten Users an.");
-                                line = scanner.nextLine();
-                                for (User user : movieDBUsers) {
-                                    if (user.getName().equals(line)) {
-                                        currentUser = user;
-                                    }
-                                }
-                                break;
-                            default:
-                                System.out.println("Der Input wurde leider nicht erkannt.");
-                                break;
-                        }
+                        userName = line;
+                        break;
                     case "2":
                         System.out.println("Nach welchem Film suchst du?");
+                        line = scanner.nextLine();
+                        recommendations = movieDB.searchMovies(line);
+                        System.out.println("Gefunden haben wir:");
+                        for (Movie movie : recommendations) {
+                            System.out.println(movie.getMovietitle());
+                        }
                         break;
                     case "3":
                         System.out.println("Schön! Lass uns mal sehen...");
@@ -123,16 +111,25 @@ public class Main {
                         System.out.println("Bsp.: Tom Hanks,Max Mustermann");
                         System.out.println("Welche Schauspieler magst du?");
                         line = scanner.nextLine();
-                        actor = extractArguments(line);
+                        if (!line.isEmpty()) {
+                            actor = extractArguments(line);
+                        }
                         System.out.println("Gibt es Filme die wir besonders berücksichtigen sollen?");
                         line = scanner.nextLine();
-                        film = extractArguments(line);
+                        if (!line.isEmpty()) {
+                            film = extractArguments(line);
+                        }
                         System.out.println("Welche Genres schaust du gerne?");
                         line = scanner.nextLine();
-                        genres = extractArguments(line);
+                        if (!line.isEmpty()) {
+                            genres = extractArguments(line);
+                        }
                         System.out.println("Welche Direktoren gefallen dir?");
                         line = scanner.nextLine();
-                        director = extractArguments(line);
+                        if (!line.isEmpty()) {
+                            director = extractArguments(line);
+                        }
+
                         System.out.println("Wie viele Empfehlungen möchtest du bekommen?");
                         line = scanner.nextLine();
                         limit = Integer.parseInt(line);
@@ -163,7 +160,7 @@ public class Main {
                                     }
                                     id = movie.getDirectors();
                                     System.out.println("Direktoren:");
-                                    for (Integer directorId: id) {
+                                    for (Integer directorId : id) {
                                         System.out.println(movieDB.getDirector().get(directorId).getName());
                                     }
                                 }
@@ -178,18 +175,38 @@ public class Main {
 
                         System.out.println("Welchen Film willst du bewerten?");
                         line = scanner.nextLine();
-                         recommendations = movieDB.searchMovies(line);
-                        if ( recommendations.size() == 1 ) {
+                        recommendations = movieDB.searchMovies(line);
+                        if (recommendations.size() == 1) {
                             System.out.println("Gib dem Film zwischen 1 und 5 Sternen:");
                             line = scanner.nextLine();
                             rating = Double.parseDouble(line);
-
-                            // TODO DO SOMETHING WITH RATING
+                            Integer _id = recommendations.get(0).getMovieID();
+                            rating = Double.parseDouble(line);
+                            movieDB.newRate(userName, rating, _id);
                         } else {
-                            // TODO NEEDS CLARIFICATION
+                            System.out.println("Sieht aus als hätten wir mehr als einen Film gefunden!");
+                            for (Movie movie : recommendations) {
+                                System.out.println(movie.getMovietitle());
+                            }
+                            System.out.println("Welchen Film davon meinst du? Kopier einfach seinen genauen Titel!");
+                            line = scanner.nextLine();
+                            recommendations = movieDB.searchMovies(line);
+                            if (recommendations.size() == 1) {
+                                System.out.println("Gib dem Film zwischen 1 und 5 Sternen:");
+                                Integer _id = recommendations.get(0).getMovieID();
+                                line = scanner.nextLine();
+                                rating = Double.parseDouble(line);
+                                movieDB.newRate(userName, rating, _id);
+                            } else {
+                                System.out.println("Tut mir Leid! Etwas ist schief gelaufen.");
+                            }
                         }
                         break;
+                    case "0":
+                        stop = true;
+                        break;
                     default:
+                        System.out.println("Dein Befehl wurde leider nicht erkannt.");
                         break;
                 }
             }

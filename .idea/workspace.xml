@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ace2214-5592-4781-96ff-0d50c55de014" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/de/dhbw/moviedb_cr/LogicTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MovieDB_ConstantinRuhdorfer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MovieDB_ConstantinRuhdorfer.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/de/dhbw/moviedb_cr/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dhbw/moviedb_cr/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/de/dhbw/moviedb_cr/MovieDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dhbw/moviedb_cr/MovieDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/de/dhbw/moviedb_cr/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/dhbw/moviedb_cr/User.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,8 +35,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/de/dhbw/moviedb_cr/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="509">
-              <caret line="187" column="32" lean-forward="true" selection-start-line="187" selection-start-column="32" selection-end-line="187" selection-end-column="32" />
+            <state relative-caret-position="134">
+              <caret line="93" column="29" selection-start-line="93" selection-start-column="29" selection-end-line="93" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -46,13 +47,25 @@
       <file leaf-file-name="MovieDB.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/de/dhbw/moviedb_cr/MovieDB.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2593">
-              <caret line="112" column="39" selection-start-line="112" selection-start-column="39" selection-end-line="112" selection-end-column="39" />
+            <state relative-caret-position="546">
+              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#readFile#0;class#MovieDB#0" />
+                <element signature="method#getRecommendations#0;class#MovieDB#0" />
                 <element signature="method#runTest#0;class#MovieDB#0" />
                 <element signature="method#toString#0;class#MovieDB#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LogicTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/de/dhbw/moviedb_cr/LogicTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="183">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -61,12 +74,12 @@
       <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/de/dhbw/moviedb_cr/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
+            <state relative-caret-position="286">
               <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#286#287#0" expanded="true" />
-                <element signature="e#312#313#0" expanded="true" />
+                <element signature="e#318#319#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -75,8 +88,8 @@
       <file leaf-file-name="movieproject.db.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/movieproject.db.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="26">
-              <caret line="10610" column="24" selection-start-line="10610" selection-start-column="24" selection-end-line="10610" selection-end-column="24" />
+            <state relative-caret-position="4909138">
+              <caret line="188813" column="12" selection-start-line="188813" selection-start-column="12" selection-end-line="188813" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -106,8 +119,8 @@
       <file leaf-file-name="Movie.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/de/dhbw/moviedb_cr/Movie.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="587">
-              <caret line="92" column="26" selection-start-line="92" selection-start-column="26" selection-end-line="92" selection-end-column="26" />
+            <state relative-caret-position="2288">
+              <caret line="114" selection-start-line="114" selection-end-line="114" />
               <folding>
                 <element signature="e#2631#2632#0" expanded="true" />
                 <element signature="e#2661#2662#0" expanded="true" />
@@ -121,7 +134,7 @@
       <file leaf-file-name="Actor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/de/dhbw/moviedb_cr/Actor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
+            <state relative-caret-position="858">
               <caret line="43" column="43" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
               <folding>
                 <element signature="e#936#937#0" expanded="true" />
@@ -137,6 +150,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -160,6 +174,7 @@
       <find>Scarlett</find>
       <find>IMAX</find>
       <find>system</find>
+      <find>Benedict</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -182,10 +197,13 @@
         <option value="$PROJECT_DIR$/src/de/dhbw/moviedb_cr/Rate.java" />
         <option value="$PROJECT_DIR$/src/de/dhbw/moviedb_cr/Director.java" />
         <option value="$PROJECT_DIR$/src/de/dhbw/moviedb_cr/Actor.java" />
-        <option value="$PROJECT_DIR$/movieproject.db.txt" />
         <option value="$PROJECT_DIR$/src/de/dhbw/moviedb_cr/Movie.java" />
-        <option value="$PROJECT_DIR$/src/de/dhbw/moviedb_cr/MovieDB.java" />
         <option value="$PROJECT_DIR$/src/de/dhbw/moviedb_cr/User.java" />
+        <option value="$PROJECT_DIR$/movieproject.db.txt" />
+        <option value="$PROJECT_DIR$/src/de/dhbw/moviedb_cr/MovieDB.java" />
+        <option value="$PROJECT_DIR$/src/de/dhbw/moviedb_cr/TestTest.java" />
+        <option value="$PROJECT_DIR$/src/de/dhbw/moviedb_cr/Test.java" />
+        <option value="$PROJECT_DIR$/src/de/dhbw/moviedb_cr/LogicTest.java" />
         <option value="$PROJECT_DIR$/src/de/dhbw/moviedb_cr/Main.java" />
       </list>
     </option>
@@ -210,8 +228,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -234,18 +253,31 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="database.main" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="de.dhbw.moviedb_cr" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -259,11 +291,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+  <component name="RunManager" selected="JUnit.LogicTest.testRecommendationsLimit">
+    <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="de.dhbw.moviedb_cr.Main" />
       <module name="MovieDB_ConstantinRuhdorfer" />
-      <option name="PROGRAM_PARAMETERS" value="--limit=&quot;30&quot; --film=&quot;Conjuring, Shutter Island, Strange, Sherlock Holmes&quot; --actor=&quot;Benedict Cumberbatch, Johnny Depp, Scarlett Johansson, Jeniffer Lawrence&quot; --genre=&quot;Thriller, Sci-Fi&quot;" />
+      <option name="PROGRAM_PARAMETERS" value="--limit=&quot;10&quot; --test=true --film=&quot;Matrix&quot; --actor=&quot;Benedict Cumberbatch&quot; --genre=&quot;Fantasy&quot;" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
@@ -278,13 +310,67 @@
         </pattern>
       </extension>
     </configuration>
+    <configuration name="Unnamed" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="de.dhbw.moviedb_cr.Main" />
+      <module name="MovieDB_ConstantinRuhdorfer" />
+    </configuration>
+    <configuration name="LogicTest.myTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MovieDB_ConstantinRuhdorfer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.dhbw.moviedb_cr.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="de.dhbw.moviedb_cr" />
+      <option name="MAIN_CLASS_NAME" value="de.dhbw.moviedb_cr.LogicTest" />
+      <option name="METHOD_NAME" value="myTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="LogicTest.testRecommendationsLimit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MovieDB_ConstantinRuhdorfer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.dhbw.moviedb_cr.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="de.dhbw.moviedb_cr" />
+      <option name="MAIN_CLASS_NAME" value="de.dhbw.moviedb_cr.LogicTest" />
+      <option name="METHOD_NAME" value="testRecommendationsLimit" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
     <list>
       <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Unnamed" />
       <item itemvalue="Application.MovieDB" />
+      <item itemvalue="JUnit.LogicTest.myTest" />
+      <item itemvalue="JUnit.LogicTest.testRecommendationsLimit" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.LogicTest.testRecommendationsLimit" />
+        <item itemvalue="JUnit.LogicTest.myTest" />
         <item itemvalue="Application.MovieDB" />
       </list>
     </recent_temporary>
@@ -314,19 +400,49 @@
       <workItem from="1531213516453" duration="5050000" />
       <workItem from="1531238297602" duration="4666000" />
       <workItem from="1531318374976" duration="149000" />
-      <workItem from="1531382410411" duration="6676000" />
+      <workItem from="1531382410411" duration="6790000" />
+      <workItem from="1531463929013" duration="8155000" />
+      <workItem from="1531689205215" duration="977000" />
+      <workItem from="1531690217818" duration="1625000" />
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="LogicTest_myTest - 2018.07.15 at 23h 36m 00s.xml">
+      <configuration name="LogicTest.myTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LogicTest_myTest - 2018.07.15 at 23h 36m 25s.xml">
+      <configuration name="LogicTest.myTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LogicTest_myTest - 2018.07.15 at 23h 37m 20s.xml">
+      <configuration name="LogicTest.myTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LogicTest_myTest - 2018.07.15 at 23h 38m 17s.xml">
+      <configuration name="LogicTest.myTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LogicTest_myTest - 2018.07.16 at 09h 23m 12s.xml">
+      <configuration name="LogicTest.myTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LogicTest_testRecommendationsLimit - 2018.07.16 at 09h 26m 11s.xml">
+      <configuration name="LogicTest.testRecommendationsLimit" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LogicTest_myTest - 2018.07.16 at 09h 26m 49s.xml">
+      <configuration name="LogicTest.myTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LogicTest_testRecommendationsLimit - 2018.07.16 at 09h 26m 54s.xml">
+      <configuration name="LogicTest.testRecommendationsLimit" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63524000" />
+    <option name="totallyTimeSpent" value="74395000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="0" />
-      <window_info anchor="bottom" id="TODO" order="8" />
+      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.49934897" weight="0.3272472" />
       <window_info anchor="right" id="Palette&#9;" order="1" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="2" />
@@ -334,45 +450,44 @@
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="1" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="2" />
-      <window_info anchor="right" id="Run" order="10" weight="0.38476562" />
-      <window_info anchor="right" id="Terminal" order="9" visible="true" weight="6.510417E-4" />
+      <window_info active="true" anchor="right" id="Run" order="10" visible="true" weight="6.510417E-4" />
+      <window_info anchor="right" id="Terminal" order="9" weight="0.2825521" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13671875" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1875" />
       <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="bottom" id="Find" order="4" weight="0.3286517" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="5" weight="0.83426964" />
+      <window_info anchor="right" id="Debug" order="11" weight="0.48046875" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="9" sideWeight="0.49934897" weight="0.3272472" />
-      <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
-      <window_info anchor="bottom" id="Inspection Results" order="10" weight="0.3286517" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="Inspection Results" order="9" weight="0.3286517" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="3" />
-      <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="4" weight="0.3286517" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="2" />
-      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info id="Image Layers" order="2" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32737276" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22526042" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="10" />
+      <window_info id="Favorites" order="5" side_tool="true" />
       <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.39044943" />
       <window_info anchor="bottom" id="Inspection Results" order="0" weight="0.3286517" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="bottom" id="Database Changes" order="2" show_stripe_button="false" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22526042" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="right" id="Palette&#9;" order="1" />
       <window_info anchor="right" id="Terminal" order="9" weight="0.34114584" />
@@ -382,9 +497,9 @@
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="4" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32737276" />
+      <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -395,58 +510,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="13" />
+      <option name="time" value="29" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/de/dhbw/moviedb_cr/Movie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2158">
-          <caret line="115" column="43" selection-start-line="115" selection-start-column="43" selection-end-line="115" selection-end-column="43" />
-          <folding>
-            <element signature="e#2631#2632#0" expanded="true" />
-            <element signature="e#2661#2662#0" expanded="true" />
-            <element signature="e#2718#2719#0" expanded="true" />
-            <element signature="e#2756#2757#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/dhbw/moviedb_cr/Actor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="858">
-          <caret line="43" column="43" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
-          <folding>
-            <element signature="e#936#937#0" expanded="true" />
-            <element signature="e#992#993#0" expanded="true" />
-            <element signature="e#1028#1029#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/dhbw/moviedb_cr/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/dhbw/moviedb_cr/MovieDB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3458">
-          <caret line="133" column="47" selection-start-line="133" selection-start-column="47" selection-end-line="133" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#readFile#0;class#MovieDB#0" />
-            <element signature="method#runTest#0;class#MovieDB#0" />
-            <element signature="method#toString#0;class#MovieDB#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/movieproject.db.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483132">
@@ -507,7 +574,7 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#286#287#0" expanded="true" />
-            <element signature="e#312#313#0" expanded="true" />
+            <element signature="e#318#319#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -528,7 +595,7 @@
           <caret line="59" column="34" selection-start-line="59" selection-start-column="34" selection-end-line="59" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#readFile#0;class#MovieDB#0" />
+            <element signature="method#getRecommendations#0;class#MovieDB#0" />
             <element signature="method#runTest#0;class#MovieDB#0" />
             <element signature="method#toString#0;class#MovieDB#0" />
           </folding>
@@ -542,7 +609,7 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#286#287#0" expanded="true" />
-            <element signature="e#312#313#0" expanded="true" />
+            <element signature="e#318#319#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -663,7 +730,7 @@
           <caret line="39" column="34" lean-forward="true" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#readFile#0;class#MovieDB#0" />
+            <element signature="method#getRecommendations#0;class#MovieDB#0" />
             <element signature="method#runTest#0;class#MovieDB#0" />
             <element signature="method#toString#0;class#MovieDB#0" />
           </folding>
@@ -686,7 +753,7 @@
           <caret line="38" column="21" lean-forward="true" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#readFile#0;class#MovieDB#0" />
+            <element signature="method#getRecommendations#0;class#MovieDB#0" />
             <element signature="method#runTest#0;class#MovieDB#0" />
             <element signature="method#toString#0;class#MovieDB#0" />
           </folding>
@@ -745,7 +812,7 @@
           <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#readFile#0;class#MovieDB#0" />
+            <element signature="method#getRecommendations#0;class#MovieDB#0" />
             <element signature="method#runTest#0;class#MovieDB#0" />
             <element signature="method#toString#0;class#MovieDB#0" />
           </folding>
@@ -765,7 +832,7 @@
           <caret line="32" column="34" lean-forward="true" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#readFile#0;class#MovieDB#0" />
+            <element signature="method#getRecommendations#0;class#MovieDB#0" />
             <element signature="method#runTest#0;class#MovieDB#0" />
             <element signature="method#toString#0;class#MovieDB#0" />
           </folding>
@@ -785,7 +852,7 @@
           <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#readFile#0;class#MovieDB#0" />
+            <element signature="method#getRecommendations#0;class#MovieDB#0" />
             <element signature="method#runTest#0;class#MovieDB#0" />
             <element signature="method#toString#0;class#MovieDB#0" />
           </folding>
@@ -826,13 +893,6 @@
     <entry file="file://$PROJECT_DIR$/test_1531236604349.txt" />
     <entry file="file://$PROJECT_DIR$/test_1531240388157.txt" />
     <entry file="file://$PROJECT_DIR$/test_1531240744920.txt" />
-    <entry file="file://$PROJECT_DIR$/movieproject.db.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="10610" column="24" selection-start-line="10610" selection-start-column="24" selection-end-line="10610" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/de/dhbw/moviedb_cr/Director.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -853,22 +913,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/dhbw/moviedb_cr/Movie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="587">
-          <caret line="92" column="26" selection-start-line="92" selection-start-column="26" selection-end-line="92" selection-end-column="26" />
-          <folding>
-            <element signature="e#2631#2632#0" expanded="true" />
-            <element signature="e#2661#2662#0" expanded="true" />
-            <element signature="e#2718#2719#0" expanded="true" />
-            <element signature="e#2756#2757#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/de/dhbw/moviedb_cr/Actor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
+        <state relative-caret-position="858">
           <caret line="43" column="43" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
           <folding>
             <element signature="e#936#937#0" expanded="true" />
@@ -880,23 +927,62 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/de/dhbw/moviedb_cr/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
+        <state relative-caret-position="286">
           <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#286#287#0" expanded="true" />
-            <element signature="e#312#313#0" expanded="true" />
+            <element signature="e#318#319#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/dhbw/moviedb_cr/Movie.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2288">
+          <caret line="114" selection-start-line="114" selection-end-line="114" />
+          <folding>
+            <element signature="e#2631#2632#0" expanded="true" />
+            <element signature="e#2661#2662#0" expanded="true" />
+            <element signature="e#2718#2719#0" expanded="true" />
+            <element signature="e#2756#2757#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/movieproject.db.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4909138">
+          <caret line="188813" column="12" selection-start-line="188813" selection-start-column="12" selection-end-line="188813" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_1531470782454.txt" />
+    <entry file="file://$PROJECT_DIR$/src/de/dhbw/moviedb_cr/LogicTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/dhbw/moviedb_cr/TestTest.java" />
+    <entry file="file://$PROJECT_DIR$/src/de/dhbw/moviedb_cr/LogicTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/de/dhbw/moviedb_cr/MovieDB.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2593">
-          <caret line="112" column="39" selection-start-line="112" selection-start-column="39" selection-end-line="112" selection-end-column="39" />
+        <state relative-caret-position="546">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#readFile#0;class#MovieDB#0" />
+            <element signature="method#getRecommendations#0;class#MovieDB#0" />
             <element signature="method#runTest#0;class#MovieDB#0" />
             <element signature="method#toString#0;class#MovieDB#0" />
           </folding>
@@ -905,8 +991,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/de/dhbw/moviedb_cr/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="187" column="32" lean-forward="true" selection-start-line="187" selection-start-column="32" selection-end-line="187" selection-end-column="32" />
+        <state relative-caret-position="134">
+          <caret line="93" column="29" selection-start-line="93" selection-start-column="29" selection-end-line="93" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

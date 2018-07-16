@@ -45,7 +45,8 @@ public class MovieDB {
 
     private void writeRating(String name, Double rating, Integer movieId) {
         final String newLine = System.getProperty("line.separator");
-        String toWrite = String.format("\"%s\",\"%f\",\"%d\"", name, rating, movieId);
+        String ratingString = String.format(Locale.US, "%.1f", rating);
+        String toWrite = String.format("\"%s\"," + "\"" + ratingString + "\"" + ",\"%d\"", name, movieId);
         PrintWriter printWriter = null;
         try {
             printWriter = new PrintWriter(new FileOutputStream("movieproject.db.txt", true));
@@ -69,6 +70,7 @@ public class MovieDB {
         ArrayList<Movie> currentMovies;
 
         ArrayList<Movie> likedByOtherUsers = new ArrayList<>();
+        ArrayList<Movie> likedByMyself = new ArrayList<>();
 
         User currentUser = user.get(userName);
 
@@ -85,14 +87,31 @@ public class MovieDB {
                         }
                     }
                 }
-                currentID = currentUser.getRatedMovieIDs();
-                for(Integer id: currentID) {
-                    if (currentUser.getRatedMovie().get(id) >= 3.5) {
-                        likedByOtherUsers.add(movie.get(id));
+            }
+        }
+
+        /*
+        if (currentUser != null) {
+            currentID = currentUser.getRatedMovieIDs();
+            for (Integer id : currentID) {
+                if (currentUser.getRatedMovie().get(id) >= 3.5) {
+                    likedByMyself.add(movie.get(id));
+                }
+            }
+
+            for (Movie likedMovies : likedByMyself) {
+                ArrayList<String> ratedBy = likedMovies.getRatedBy();
+                for (String name : ratedBy) {
+                    ArrayList<Integer> recommendationId = user.get(name).getRatedMovieIDs();
+                    for (Integer _id : recommendationId) {
+                        if (user.get(name).getRatedMovie().get(_id) >= 3.5) {
+                            likedByOtherUsers.add(movie.get(_id));
+                        }
                     }
                 }
             }
         }
+        */
 
 
         for (Movie movie : movie.values()) {
@@ -104,7 +123,6 @@ public class MovieDB {
                     weight = weight * 1.01;
                 }
             }
-
 
             currentID = movie.getActors();
             for (Integer id : currentID) {

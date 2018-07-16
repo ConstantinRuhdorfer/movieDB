@@ -101,6 +101,7 @@ public class Main {
                         System.out.println("Gefunden haben wir:");
                         for (Movie movie : recommendations) {
                             System.out.println(movie.getMovietitle());
+                            System.out.println(movie.toString());
                         }
                         break;
                     case "3":
@@ -177,7 +178,7 @@ public class Main {
                         if (recommendations.size() == 1) {
                             System.out.println("Gib dem Film zwischen 1 und 5 Sternen:");
                             line = scanner.nextLine();
-                            rating = Double.parseDouble(line);
+                            rating = Double.parseDouble(line.replaceAll(",","."));
                             Integer _id = recommendations.get(0).getMovieID();
                             movieDB.newRate(userName, rating, _id);
                         } else {

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Actor {
     private String name;
     private Integer actorID;
-    ArrayList<Integer> movies = new ArrayList<>();
+    private ArrayList<Integer> moviesId = new ArrayList<>();
 
     Actor(String name, Integer actorID) {
         this.name = name;
@@ -17,12 +17,12 @@ public class Actor {
         return "Actor{" +
                 "name='" + name + '\'' +
                 ", actorID=" + actorID +
-                ", movies=" + movies +
+                ", moviesId=" + moviesId +
                 '}';
     }
 
     void addMovie(Integer movieId) {
-        movies.add(movieId);
+        moviesId.add(movieId);
     }
 
     public String getName() {
@@ -41,11 +41,11 @@ public class Actor {
         this.actorID = actorID;
     }
 
-    public ArrayList<Integer> getMovies() {
-        return movies;
+    public ArrayList<Integer> getMoviesId() {
+        return moviesId;
     }
 
-    public void setMovies(ArrayList<Integer> movies) {
-        this.movies = movies;
+    public void setMoviesId(ArrayList<Integer> moviesId) {
+        this.moviesId = moviesId;
     }
 }

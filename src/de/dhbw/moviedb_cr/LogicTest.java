@@ -30,21 +30,30 @@ public class LogicTest {
         assertEquals(
                 9125,
                 movieDB.getMovie().size()
-                );
+        );
     }
 
     @Test
     void testSearch() {
 
-        assertEquals(4,  movieDB.searchMovies("Matrix").size() );
+        assertEquals(4, movieDB.searchMovies("Matrix").size());
     }
 
     @Test
-    void testTestFlag() {
-        String args[] = {"--test=true","--limit=\"10\"","--genre=\"Fantasy\""};
+    void testExtractArguments() {
+        String args[] = {"--test=true", "--limit=\"10\"", "--genre=\"Fantasy\""};
 
-        Main.main(args);
+        ArrayList<String> expected = new ArrayList<String>();
+        expected.add("true");
+        expected.add("\"10\"");
+        expected.add("\"Fantasy\"");
 
+        ArrayList<String> actual = new ArrayList<>();
 
+        for (String arg : args) {
+           actual.addAll(Main.extractArguments(arg));
+        }
+
+        assertEquals(expected, actual);
     }
 }

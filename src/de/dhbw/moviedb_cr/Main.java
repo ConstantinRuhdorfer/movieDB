@@ -220,7 +220,7 @@ public class Main {
         }
     }
 
-    private static ArrayList<String> extractArguments(String s) {
+    static ArrayList<String> extractArguments(String s) {
 
         return new ArrayList<>(
                 Arrays.asList(

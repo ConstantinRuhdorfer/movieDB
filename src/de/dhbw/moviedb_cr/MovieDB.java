@@ -61,8 +61,27 @@ public class MovieDB {
         }
     }
 
-    List<Movie> getRecommendations(ArrayList<String> actors, ArrayList<String> films, ArrayList<String> directors, ArrayList<String> genres, Integer limit, String userName) {
+    /*
+    *   Die getRecommendations Funktion berechenet im wesentlichen für alle Filme ein Gewicht, sortiert alle Filme dann
+    *   nach ihrem Gewicht und gibt dann die geforderte Menge an Filmen als Liste wieder zurück.
+    *
+    *   Zunächst wird das Gewicht von jedem Film auf 1.0 gesetzt.
+    *   Um das Gewicht zu berechnen achtet die Funktion auf verschiedene Faktoren (in Reihenfolge der Parameter):
+    *  1. Wenn ein Film den gleichen Actor hat, wie in den Parametern angegeben, wird das Gewicht * 2.1 genommen.
+    *  2. Von allen übergebenen Filmen werden die User gesucht, die diesen Film gut fanden.
+    *     Dann werden die Filme der User gesucht, die sie gut fanden und diesen Filmen wird das Gewicht mit 1.01
+    *     multipliziert.
+    *  3. Für Directosrs wie bei Actors.
+    *  4. Für Genres wie bei Actors.
+    *  5. Das Limit bestimmt die Länge der zurückgegebenen Liste.
+    *  6. Wird ein User angegeben werden die Filme geholt, die dieser gut fande und dann mit diesen Verfahren, wie unter 2.
+    *
+    *   Danach wird das so berechnete Gewicht mit dem IMDB Rating des Filmes multipliziert und das Gewicht dem Film hinzugefügt.
+    *   Das passiert für jeden Film.
+    *   Dann wird sortiert und nach dem Limit zurückgegeben.
+     */
 
+    List<Movie> getRecommendations(ArrayList<String> actors, ArrayList<String> films, ArrayList<String> directors, ArrayList<String> genres, Integer limit, String userName) {
         Double weight;
         ArrayList<Integer> currentID;
         ArrayList<String> currentName;
@@ -91,9 +110,13 @@ public class MovieDB {
 
         if (currentUser != null) {
             for (Integer k:  currentUser.getRatedMovie().keySet() ) {
-                for (String _userId : movie.get(k).getRatedBy()) {
-                    for (Integer _movieId : user.get(_userId).getRatedMovieIDs()) {
-                        likedByOtherUsers.add(movie.get(_movieId));
+                if ( currentUser.getRatedMovie().get(k) >= 3.5 ) {
+                    for (String _userId : movie.get(k).getRatedBy()) {
+                        for (Integer _movieId : user.get(_userId).getRatedMovieIDs()) {
+                            if( user.get(_userId).getRatedMovie().get(_movieId) >= 3.5 ) {
+                                likedByOtherUsers.add(movie.get(_movieId));
+                            }
+                        }
                     }
                 }
             }

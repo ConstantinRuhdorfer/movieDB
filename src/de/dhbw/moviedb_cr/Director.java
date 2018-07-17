@@ -7,7 +7,7 @@ public class Director {
     private String name;
     private Integer directorID;
 
-    ArrayList<Integer> movies = new ArrayList<>();
+    private ArrayList<Integer> movies = new ArrayList<>();
 
     Director(String name, Integer directorID) {
         this.name = name;

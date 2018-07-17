@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 
 public class MovieDB {
 
-    HashMap<Integer, Actor> actor = new HashMap<>();
-    HashMap<Integer, Movie> movie = new HashMap<>();
-    HashMap<Integer, Director> director = new HashMap<>();
-    HashMap<String, User> user = new HashMap<>();
+    private HashMap<Integer, Actor> actor = new HashMap<>();
+    private HashMap<Integer, Movie> movie = new HashMap<>();
+    private HashMap<Integer, Director> director = new HashMap<>();
+    private HashMap<String, User> user = new HashMap<>();
 
     MovieDB() {
         readFile();
@@ -31,7 +31,7 @@ public class MovieDB {
 
     void newRate(String name, Double rating, Integer movieId) {
         if (user.get(name) != null) {
-            if (user.get(name).ratedMovieIDs.contains(movieId)) {
+            if (user.get(name).getRatedMovieIDs().contains(movieId)) {
                 user.get(name).addRating(movieId, rating);
             } else {
                 user.get(name).addRating(movieId, rating);
@@ -61,7 +61,6 @@ public class MovieDB {
         }
     }
 
-
     List<Movie> getRecommendations(ArrayList<String> actors, ArrayList<String> films, ArrayList<String> directors, ArrayList<String> genres, Integer limit, String userName) {
 
         Double weight;
@@ -70,7 +69,6 @@ public class MovieDB {
         ArrayList<Movie> currentMovies;
 
         ArrayList<Movie> likedByOtherUsers = new ArrayList<>();
-        ArrayList<Movie> likedByMyself = new ArrayList<>();
 
         User currentUser = user.get(userName);
 
@@ -90,28 +88,22 @@ public class MovieDB {
             }
         }
 
-        /*
-        if (currentUser != null) {
-            currentID = currentUser.getRatedMovieIDs();
-            for (Integer id : currentID) {
-                if (currentUser.getRatedMovie().get(id) >= 3.5) {
-                    likedByMyself.add(movie.get(id));
-                }
-            }
 
-            for (Movie likedMovies : likedByMyself) {
-                ArrayList<String> ratedBy = likedMovies.getRatedBy();
-                for (String name : ratedBy) {
-                    ArrayList<Integer> recommendationId = user.get(name).getRatedMovieIDs();
-                    for (Integer _id : recommendationId) {
-                        if (user.get(name).getRatedMovie().get(_id) >= 3.5) {
-                            likedByOtherUsers.add(movie.get(_id));
-                        }
+        if (currentUser != null) {
+            for (Integer k:  currentUser.getRatedMovie().keySet() ) {
+                for (String _userId : movie.get(k).getRatedBy()) {
+                    for (Integer _movieId : user.get(_userId).getRatedMovieIDs()) {
+                        likedByOtherUsers.add(movie.get(_movieId));
                     }
                 }
             }
         }
-        */
+
+
+        Set<Movie> removeDuplicates = new HashSet<>(likedByOtherUsers);
+        likedByOtherUsers.clear();
+        likedByOtherUsers.addAll(removeDuplicates);
+
 
 
         for (Movie movie : movie.values()) {
@@ -245,7 +237,7 @@ public class MovieDB {
                             User newUser = new User(name, rating, movieId);
 
                             if (user.get(name) != null) {
-                                if (user.get(name).ratedMovieIDs.contains(movieId)) {
+                                if (user.get(name).getRatedMovieIDs().contains(movieId)) {
                                     user.get(name).addRating(movieId, rating);
                                 } else {
                                     user.get(name).addRating(movieId, rating);

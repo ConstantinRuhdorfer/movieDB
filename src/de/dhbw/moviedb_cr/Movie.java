@@ -13,26 +13,11 @@ public class Movie implements Comparable {
 
     private Double currentWeight;
 
-    ArrayList<String> genreNames = new ArrayList<>();
-    ArrayList<String> ratedBy = new ArrayList<>();
-    ArrayList<Integer> actors = new ArrayList<>();
-    ArrayList<Integer> directors = new ArrayList<>();
+    private ArrayList<String> genreNames = new ArrayList<>();
+    private ArrayList<String> ratedBy = new ArrayList<>();
+    private ArrayList<Integer> actors = new ArrayList<>();
+    private ArrayList<Integer> directors = new ArrayList<>();
 
-    public String getMovieIMDBVotes() {
-        return movieIMDBVotes;
-    }
-
-    public void setMovieIMDBVotes(String movieIMDBVotes) {
-        this.movieIMDBVotes = movieIMDBVotes;
-    }
-
-    public Double getMovieIMDBRating() {
-        return movieIMDBRating;
-    }
-
-    public void setMovieIMDBRating(Double movieIMDBRating) {
-        this.movieIMDBRating = movieIMDBRating;
-    }
 
     Movie(
             String movieTitle,
@@ -87,7 +72,6 @@ public class Movie implements Comparable {
     void addDirector(Integer directorId) {
         directors.add(directorId);
     }
-
 
     void addRatedBy(String name) {
         ratedBy.add(name);
@@ -165,5 +149,20 @@ public class Movie implements Comparable {
         this.currentWeight = currentWeight;
     }
 
+    public String getMovieIMDBVotes() {
+        return movieIMDBVotes;
+    }
+
+    public void setMovieIMDBVotes(String movieIMDBVotes) {
+        this.movieIMDBVotes = movieIMDBVotes;
+    }
+
+    public Double getMovieIMDBRating() {
+        return movieIMDBRating;
+    }
+
+    public void setMovieIMDBRating(Double movieIMDBRating) {
+        this.movieIMDBRating = movieIMDBRating;
+    }
 
 }

@@ -178,7 +178,7 @@ public class MovieDB {
         return recommendationArray;
     }
 
-    void readFile() {
+    private void readFile() {
 
         String in = null;
         String identifier = null;

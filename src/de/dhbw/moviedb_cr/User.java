@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class User {
 
     private String name;
-    private HashMap<Integer, Double> ratedMovie = new HashMap<Integer, Double>();
+    private HashMap<Integer, Double> ratedMovie = new HashMap<>();
     private ArrayList<Integer> ratedMovieIDs = new ArrayList<>();
 
     User(String name, Double rating, Integer movieId) {

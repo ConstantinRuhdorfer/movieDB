@@ -55,6 +55,10 @@ public class Movie implements Comparable {
                 '}';
     }
 
+    /*
+    *   compareTo ist überschrieben, um bei den Filmempfehlungen die Filme nur nach dem Gewicht zu sortieren,
+    *   da uns für die Empfehlung kein anderer Faktor interessiert und die MovieOBjekte sonst nicht sortiert werden müssen.
+     */
     @Override
     public int compareTo(Object o) {
         Movie other = (Movie) o;

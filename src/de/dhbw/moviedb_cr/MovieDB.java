@@ -5,6 +5,7 @@ import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("StringConcatenationInsideStringBufferAppend")
 public class MovieDB {
 
     private HashMap<Integer, Actor> actor = new HashMap<>();
@@ -16,6 +17,10 @@ public class MovieDB {
         readFile();
     }
 
+    /*
+    *   Durchsucht die Movie HashMap nach Movietiteln, die im Titel den param enthalten
+    *   und gibt alle diese MovieObjekte in einer Arrayliste zurück.
+     */
     ArrayList<Movie> searchMovies(String param) {
 
         ArrayList<Movie> results = new ArrayList<>();
@@ -178,9 +183,13 @@ public class MovieDB {
         return recommendationArray;
     }
 
+    /*
+    *   Die Funktion liest die File ein und parst nach den verschiedenen Entities die relevanten Daten in das Datenmodell
+    *   und von dort in eine HashMap.
+     */
     private void readFile() {
 
-        String in = null;
+        String in;
         String identifier = null;
         String substrings[];
 
@@ -296,9 +305,9 @@ public class MovieDB {
         List<Movie> testRecommendation = new ArrayList<>();
 
         ArrayList<String> actors = new ArrayList<>();
-        ArrayList<String> films = new ArrayList<String>(Arrays.asList("Matrix Revolutions"));
+        ArrayList<String> films = new ArrayList<>(Collections.singletonList("Matrix Revolutions"));
         ArrayList<String> directors = new ArrayList<>();
-        ArrayList<String> genre = new ArrayList<String>(Arrays.asList("Thriller"));
+        ArrayList<String> genre = new ArrayList<>(Collections.singletonList("Thriller"));
         Integer limit = 10;
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("test_" + new Date().getTime() + ".txt"))) {

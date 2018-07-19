@@ -48,9 +48,7 @@ public class Main {
                         limit,
                         null
                 );
-                recommendations.forEach(movie -> {
-                    System.out.println(movie.getMovietitle());
-                });
+                recommendations.forEach(movie -> System.out.println(movie.getMovietitle()));
             }
         } else {
             startInteractive(movieDBUsers, movieDB);

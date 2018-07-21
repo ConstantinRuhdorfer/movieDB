@@ -5,7 +5,7 @@ import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@SuppressWarnings("StringConcatenationInsideStringBufferAppend")
+
 public class MovieDB {
 
     private HashMap<Integer, Actor> actor = new HashMap<>();
@@ -54,7 +54,7 @@ public class MovieDB {
         String toWrite = String.format("\"%s\"," + "\"" + ratingString + "\"" + ",\"%d\"", name, movieId);
         PrintWriter printWriter = null;
         try {
-            printWriter = new PrintWriter(new FileOutputStream("movieproject.db.txt", true));
+            printWriter = new PrintWriter(new FileOutputStream("movieproject.db", true));
             printWriter.append(newLine + toWrite);
         } catch (IOException e) {
             e.printStackTrace();
@@ -206,7 +206,7 @@ public class MovieDB {
         String movieIMDBVotes;
         String movieIMDBRating;
 
-        try (BufferedReader br = new BufferedReader(new FileReader("movieproject.db.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("movieproject.db"))) {
             while ((in = br.readLine()) != null) {
                 if (in.contains("New_Entity: ")) {
                     identifier = in.substring(12);

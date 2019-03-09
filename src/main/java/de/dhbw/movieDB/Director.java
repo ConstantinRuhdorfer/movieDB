@@ -9,6 +9,12 @@ public class Director {
 
     private ArrayList<Integer> movies = new ArrayList<>();
 
+    /**
+     * Creates an dqirector object.
+     *
+     * @param name       The name of the director.
+     * @param directorID The ID of the director.
+     */
     Director(String name, Integer directorID) {
         this.name = name;
         this.directorID = directorID;

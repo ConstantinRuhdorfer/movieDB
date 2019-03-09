@@ -4,6 +4,14 @@ import java.util.*;
 
 public class Main {
 
+    /**
+     * The main method.
+     * The project was part of my 2nd semester @ DHBW Stuttgart for the class Object orienteted programming with Java.
+     * Now it is largely a toy project exploring ideas around the topic of recommendation systems, a research interest of mine.
+     * The Java code mostly resembles the project that was due in the class and therefore might feature some party which arent necessary anymore.
+     *
+     * @param args Programm args.
+     */
     public static void main(String[] args) {
 
         MovieDB movieDB = new MovieDB();
@@ -55,6 +63,12 @@ public class Main {
         }
     }
 
+    /**
+     * Starts the interactive mode.
+     *
+     * @param movieDBUsers A list of all users.
+     * @param movieDB      A MovieDB object.
+     */
     private static void startInteractive(ArrayList<User> movieDBUsers, MovieDB movieDB) {
 
         ArrayList<String> actor = new ArrayList<>();
@@ -176,7 +190,7 @@ public class Main {
                         if (recommendations.size() == 1) {
                             System.out.println("Gib dem Film zwischen 1 und 5 Sternen:");
                             line = scanner.nextLine();
-                            rating = Double.parseDouble(line.replaceAll(",","."));
+                            rating = Double.parseDouble(line.replaceAll(",", "."));
                             Integer _id = recommendations.get(0).getMovieID();
                             movieDB.newRate(userName, rating, _id);
                         } else {
@@ -188,7 +202,7 @@ public class Main {
                             }
                             System.out.println("Welchen Film davon meinst du? Benutz einfach seine Nummer!");
                             line = scanner.nextLine();
-                            if ( recommendations.size() >= (Integer.parseInt(line) + 1)) {
+                            if (recommendations.size() >= (Integer.parseInt(line) + 1)) {
                                 Movie choosenMovie = recommendations.get(Integer.parseInt(line));
                                 System.out.println("Du hast dich für " + choosenMovie.getMovietitle() + " entschieden.");
                                 Integer _id = choosenMovie.getMovieID();
@@ -218,6 +232,12 @@ public class Main {
         }
     }
 
+    /**
+     * Helper function for extracting arguments from a string.
+     *
+     * @param s The argument string.
+     * @return A list of arguments.
+     */
     static ArrayList<String> extractArguments(String s) {
 
         return new ArrayList<>(

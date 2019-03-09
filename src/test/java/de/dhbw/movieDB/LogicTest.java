@@ -13,7 +13,7 @@ public class LogicTest {
     private final MovieDB movieDB = new MovieDB();
 
     /*
-    *   Wir erwarten, dass das Limit die korrekte Anzahl Filme zurück gibt.
+    *   Tests if the recommendation functions returns the correct ammount of recommendations.
      */
     @Test
     void testRecommendationsLimit() {
@@ -28,7 +28,7 @@ public class LogicTest {
     }
 
     /*
-    *   Es gibt genau 9125 verschiedene Filme in der File. Diese sollten sich auch in der Datenbank wieder finden.
+    *   Tests if the import was correct.
      */
     @Test
     void testNumberOfImportedMovies() {
@@ -39,14 +39,8 @@ public class LogicTest {
         );
     }
 
-    /*
-    *   Es gibt vier Filme in denen der Begriff 'matrix' vorkommt:
-    *   1. Animatrix, The,
-    *   2. Matrix, The
-    *   3. Matrix Revolutions
-    *   4. Matrix Reloaded
-    *
-    *   Daher sollte die Länge des zurückgegebenen Arrays vier betragen.
+    /**
+     * Cosider that in the databse are four movies with Matrix in the title, so 4 movies should be returned.
      */
     @Test
     void testSearch() {
@@ -54,8 +48,8 @@ public class LogicTest {
         assertEquals(4, movieDB.searchMovies("Matrix").size());
     }
 
-    /*
-    *   Die Argumente sollten korrekt von ihren Flags getrennt werden.
+    /**
+     * Tests wether extract arguments correctly parses the arguments.
      */
     @Test
     void testExtractArguments() {

@@ -19,6 +19,16 @@ public class Movie implements Comparable {
     private ArrayList<Integer> directors = new ArrayList<>();
 
 
+    /**
+     * Creates a movie object.
+     *
+     * @param movieTitle      The title of the movie.
+     * @param moviePlot       The plot description of the movie.
+     * @param movieReleased   The time of release.
+     * @param movieIMDBVotes  The imdb votes.
+     * @param movieIMDBRating The rating of the movie on imdb.
+     * @param movieID         The id of the movie.
+     */
     Movie(
             String movieTitle,
             String moviePlot,
@@ -55,9 +65,11 @@ public class Movie implements Comparable {
                 '}';
     }
 
-    /*
-    *   compareTo ist überschrieben, um bei den Filmempfehlungen die Filme nur nach dem Gewicht zu sortieren,
-    *   da uns für die Empfehlung kein anderer Faktor interessiert und die MovieOBjekte sonst nicht sortiert werden müssen.
+    /**
+     * Compare to is overwritten to comapre the movies by weight.
+     *
+     * @param o The movie object to compare to.
+     * @return Returns the comparison result.
      */
     @Override
     public int compareTo(Object o) {

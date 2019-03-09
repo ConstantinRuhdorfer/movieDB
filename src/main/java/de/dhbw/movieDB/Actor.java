@@ -7,6 +7,12 @@ public class Actor {
     private Integer actorID;
     private ArrayList<Integer> moviesId = new ArrayList<>();
 
+    /**
+     * Creates an actor object.
+     *
+     * @param name    The name of the actor.
+     * @param actorID The ID of the actor.
+     */
     Actor(String name, Integer actorID) {
         this.name = name;
         this.actorID = actorID;

@@ -17,9 +17,11 @@ public class MovieDB {
         readFile();
     }
 
-    /*
-    *   Durchsucht die Movie HashMap nach Movietiteln, die im Titel den param enthalten
-    *   und gibt alle diese MovieObjekte in einer Arrayliste zurück.
+    /**
+     * Searches the Movie HashMap for movietitels which contain the String param.
+     *
+     * @param param A strng that is part of the movietitle.
+     * @return A list of movies which contain param.
      */
     ArrayList<Movie> searchMovies(String param) {
 
@@ -34,6 +36,13 @@ public class MovieDB {
         return results;
     }
 
+    /**
+     * Adds a new rate to the dataset for the current user.
+     *
+     * @param name    The user name.
+     * @param rating  The new rating value.
+     * @param movieId The movieID to be rated.
+     */
     void newRate(String name, Double rating, Integer movieId) {
         if (user.get(name) != null) {
             if (user.get(name).getRatedMovieIDs().contains(movieId)) {
@@ -66,26 +75,23 @@ public class MovieDB {
         }
     }
 
-    /*
-    *   Die getRecommendations Funktion berechenet im wesentlichen für alle Filme ein Gewicht, sortiert alle Filme dann
-    *   nach ihrem Gewicht und gibt dann die geforderte Menge an Filmen als Liste wieder zurück.
-    *
-    *   Zunächst wird das Gewicht von jedem Film auf 1.0 gesetzt.
-    *   Um das Gewicht zu berechnen achtet die Funktion auf verschiedene Faktoren (in Reihenfolge der Parameter):
-    *  1. Wenn ein Film den gleichen Actor hat, wie in den Parametern angegeben, wird das Gewicht * 2.1 genommen.
-    *  2. Von allen übergebenen Filmen werden die User gesucht, die diesen Film gut fanden.
-    *     Dann werden die Filme der User gesucht, die sie gut fanden und diesen Filmen wird das Gewicht mit 1.01
-    *     multipliziert.
-    *  3. Für Directosrs wie bei Actors.
-    *  4. Für Genres wie bei Actors.
-    *  5. Das Limit bestimmt die Länge der zurückgegebenen Liste.
-    *  6. Wird ein User angegeben werden die Filme geholt, die dieser gut fande und dann mit diesen Verfahren, wie unter 2.
-    *
-    *   Danach wird das so berechnete Gewicht mit dem IMDB Rating des Filmes multipliziert und das Gewicht dem Film hinzugefügt.
-    *   Das passiert für jeden Film.
-    *   Dann wird sortiert und nach dem Limit zurückgegeben.
+    /**
+     * This will be replaced by the Scala Code.
+     * <p>
+     * Computes a list of recommendations.
+     * This is a naive implementation using a best guess of how a recommendation system could work.
+     * It is a in-memory recommendation system, which computes a weight for every movie given the current user and returns a sorted list of movies.
+     * The weight of each of those parameters are completly abitrary choosen.
+     *
+     * @param actors    A list of all actors.
+     * @param films     A list of all films.
+     * @param directors A list of all directors.
+     * @param genres    A list of all genres.
+     * @param limit     The ammount of recommendations to be returned.
+     * @param userName  The user for which recommendations shall be computed.
+     * @return A list of recommendations.
      */
-
+    @Deprecated
     List<Movie> getRecommendations(ArrayList<String> actors, ArrayList<String> films, ArrayList<String> directors, ArrayList<String> genres, Integer limit, String userName) {
         Double weight;
         ArrayList<Integer> currentID;
@@ -114,11 +120,11 @@ public class MovieDB {
 
 
         if (currentUser != null) {
-            for (Integer k:  currentUser.getRatedMovie().keySet() ) {
-                if ( currentUser.getRatedMovie().get(k) >= 3.5 ) {
+            for (Integer k : currentUser.getRatedMovie().keySet()) {
+                if (currentUser.getRatedMovie().get(k) >= 3.5) {
                     for (String _userId : movie.get(k).getRatedBy()) {
                         for (Integer _movieId : user.get(_userId).getRatedMovieIDs()) {
-                            if( user.get(_userId).getRatedMovie().get(_movieId) >= 3.5 ) {
+                            if (user.get(_userId).getRatedMovie().get(_movieId) >= 3.5) {
                                 likedByOtherUsers.add(movie.get(_movieId));
                             }
                         }
@@ -131,7 +137,6 @@ public class MovieDB {
         Set<Movie> removeDuplicates = new HashSet<>(likedByOtherUsers);
         likedByOtherUsers.clear();
         likedByOtherUsers.addAll(removeDuplicates);
-
 
 
         for (Movie movie : movie.values()) {
@@ -183,9 +188,8 @@ public class MovieDB {
         return recommendationArray;
     }
 
-    /*
-    *   Die Funktion liest die File ein und parst nach den verschiedenen Entities die relevanten Daten in das Datenmodell
-    *   und von dort in eine HashMap.
+    /**
+     * Reads in the movies, builds the relevant objects and builds lookup hashmap.
      */
     private void readFile() {
 
@@ -299,10 +303,13 @@ public class MovieDB {
         }
     }
 
+    /**
+     * A Test which ws mandatory for handing in the project for grading.
+     */
     void runTest() {
 
         System.out.println("Lasse Test laufen und schreibe Output...");
-        List<Movie> testRecommendation = new ArrayList<>();
+        List<Movie> testRecommendation;
 
         ArrayList<String> actors = new ArrayList<>();
         ArrayList<String> films = new ArrayList<>(Collections.singletonList("Matrix Revolutions"));

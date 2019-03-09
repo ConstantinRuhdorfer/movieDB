@@ -1,4 +1,4 @@
-package de.dhbw.moviedb_cr;
+package de.dhbw.movieDB;
 
 
 import java.util.ArrayList;

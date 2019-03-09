@@ -1,5 +1,8 @@
 package de.dhbw.movieDB;
 
+import de.dhbw.recommender.App;
+import de.dhbw.recommender.InMemoryCollaborativeFiltering;
+
 import java.util.*;
 
 public class Main {
@@ -41,9 +44,10 @@ public class Main {
                 } else if (s.contains("--limit=")) {
                     limitArg = s.substring(8);
                 } else if (s.contains("--test=true")) {
-
                     test = true;
                     movieDB.runTest();
+                } else if (s.contains("--test=Scala")) {
+                    App.main();
                 }
             }
             if (!test) {

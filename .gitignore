@@ -1,2 +1,5 @@
+.idea/
 out/**
 test_*
+lib/**
+MovieDB_ConstantinRuhdorfer.iml

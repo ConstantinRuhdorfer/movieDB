@@ -1,7 +1,5 @@
 package de.dhbw.recommender
 
-import de.dhbw.movieDB.User
-
 
 /**
   * A class for doing in memory collaborative filtering by hand.
@@ -20,9 +18,5 @@ class InMemoryCollaborativeFiltering {
   def cosineSimilarity(vectorA: Vector, vectorB: Vector): Double = {
     //TODO: At the moment this implementation considers all Elements in the vector space. We need to compute I_{u,u'} first.
     vectorA.scalarProduct(vectorB) / (vectorA.computeEuclidianNorm() * vectorB.computeEuclidianNorm())
-  }
-
-  def averageRatingOfUser(user: User): Double = {
-
   }
 }

@@ -7,6 +7,8 @@ import java.util.*;
 
 public class Main {
 
+    public static MovieDB movieDB = new MovieDB();
+
     /**
      * The main method.
      * The project was part of my 2nd semester @ DHBW Stuttgart for the class Object orienteted programming with Java.
@@ -17,7 +19,7 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        MovieDB movieDB = new MovieDB();
+
         ArrayList<String> genreArg = new ArrayList<>();
         ArrayList<String> actorsArg = new ArrayList<>();
         ArrayList<String> filmArg = new ArrayList<>();

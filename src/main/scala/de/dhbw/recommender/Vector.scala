@@ -32,4 +32,39 @@ class Vector(val values: Array[Int]) {
     }
     sum
   }
+
+  /**
+    * Computes the mean of the vector and returns it.
+    *
+    * @return The vector mean.
+    */
+  def computeMean(): Double = {
+
+    var sum = 0.0
+    var i = 0
+    while (i < values.length) {
+      sum += values(i)
+      i += 1
+    }
+    sum / values.length
+  }
+
+  /**
+    * Computes the mean over a vector while excluding one value.
+    * This is important if one wants to compute the mean over a vector which includes values that represent "no rating given".
+    *
+    * @param value The value to exclude.
+    * @return The mean without the value.
+    */
+  def computeMeanExcludingValue(value: Int): Double = {
+
+    val valuesExcld: Array[Int] = values.filter(v => !v.equals(value))
+    var sum = 0.0
+    var i = 0
+    while (i < valuesExcld.length) {
+      sum += valuesExcld(i)
+      i += 1
+    }
+    sum / valuesExcld.length
+  }
 }

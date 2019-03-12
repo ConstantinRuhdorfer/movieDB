@@ -9,7 +9,7 @@ class InMemoryCollaborativeFilteringTest extends FunSuite {
     val userMap = movieDB.getUser
     val omar = userMap.get("Omar Huffman")
     val jessica = userMap.get("Jessica Sherman")
-    val iMCollabFiltering = new InMemoryCollaborativeFiltering(movieDB)
+    val iMCollabFiltering = new InMemoryCollaborativeFiltering(movieDB, 0)
 
     assert(iMCollabFiltering.getRatedByBoth(omar, jessica)
       .map(movie => movie.getMovieID)

@@ -15,5 +15,15 @@ class VectorTest extends FunSuite {
     val vectorB = new Vector(Array(4,5,6))
     assert(vectorA.scalarProduct(vectorB) == 32)
   }
+
+  test("Vector.computeMean") {
+    val vectorA = new Vector(Array(0,3,3))
+    assert(vectorA.computeMean() == 2)
+  }
+
+  test("Vector.computeMeanExcludingValue") {
+    val vectorA = new Vector(Array(0,3,3))
+    assert(vectorA.computeMeanExcludingValue(0) == 3)
+  }
 }
 

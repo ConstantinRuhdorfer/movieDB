@@ -9,6 +9,6 @@ class paradigmTest extends FunSuite {
   test("UserVector") {
     val omar = new User("TestUser", 1.0, 1)
     val uv = UserVector(omar, 3)
-    assert(uv.userVector.values sameElements Array(0.0,1.0,0.0,0.0))
+    assert(uv.userVector.values sameElements Array(0.0, 1.0, 0.0, 0.0))
   }
 }

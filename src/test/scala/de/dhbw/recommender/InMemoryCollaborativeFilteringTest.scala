@@ -13,6 +13,8 @@ class InMemoryCollaborativeFilteringTest extends FunSuite {
 
     assert(iMCollabFiltering.getRatedByBoth(omar, jessica)
       .map(movie => movie.getMovieID)
-      .map{_.toInt} sameElements Array(2399,1534,1684,1762,1130))
+      .map {
+        _.toInt
+      } sameElements Array(2399, 1534, 1684, 1762, 1130))
   }
 }

@@ -1,6 +1,6 @@
 package de.dhbw.recommender
 
-class Vector(val values: Array[Int]) {
+class Vector(val values: Array[Double]) {
 
   /**
     * Computes the euclidian norm to the current vector.
@@ -56,9 +56,9 @@ class Vector(val values: Array[Int]) {
     * @param value The value to exclude.
     * @return The mean without the value.
     */
-  def computeMeanExcludingValue(value: Int): Double = {
+  def computeMeanExcludingValue(value: Double): Double = {
 
-    val valuesExcld: Array[Int] = values.filter(v => !v.equals(value))
+    val valuesExcld: Array[Double] = values.filter(v => !v.equals(value))
     var sum = 0.0
     var i = 0
     while (i < valuesExcld.length) {

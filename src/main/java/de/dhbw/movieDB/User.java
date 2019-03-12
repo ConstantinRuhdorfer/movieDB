@@ -10,7 +10,7 @@ public class User {
     private HashMap<Integer, Double> ratedMovie = new HashMap<>();
     private ArrayList<Integer> ratedMovieIDs = new ArrayList<>();
 
-    User(String name, Double rating, Integer movieId) {
+    public User(String name, Double rating, Integer movieId) {
         this.name = name;
         ratedMovie.put(movieId, rating);
         ratedMovieIDs.add(movieId);

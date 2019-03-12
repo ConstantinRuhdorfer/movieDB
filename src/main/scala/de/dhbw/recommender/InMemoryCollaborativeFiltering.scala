@@ -6,7 +6,7 @@ import de.dhbw.movieDB.{Movie, MovieDB, User}
 
 /**
   * A class for doing in memory collaborative filtering by hand.
-  * I suspect that this dataset is way too small for quality work in recommender systems and i miht migrate to movielens in the future.
+  * I suspect that this dataset is way too small for quality work in recommender systems and i might migrate to movielens in the future.
   */
 class InMemoryCollaborativeFiltering(movieDB: MovieDB, datasetSize: Int) {
 
@@ -19,16 +19,18 @@ class InMemoryCollaborativeFiltering(movieDB: MovieDB, datasetSize: Int) {
 
   /**
     * Computes all predicted ratings for the given user.
+    * All in all the formula is:
+    * p_{u,j} = \bar{v}_u + \varphi \sum_{u' \in\neigh(u, n)} \simil(u,u')(v_{u',j} - \bar{v}_{u'})
     *
     * @param currentUser The user.
-    * @return All predicted ratings.
+    * @return Predicted ratings.
     */
-  def aggregationFunction(currentUser: User): Unit = {
+  def aggregationFunction(currentUser: User): Array[PredictedRating] = {
 
     val ratedIDs = currentUser.getRatedMovieIDs
     val notYetRated = movieMap.keySet.toArray.filter(key => !(ratedIDs contains key))
 
-    notYetRated.foreach(movieId => {
+    notYetRated.map(movieId => {
       val movie = movieMap.get(movieId)
       val sum: Double = movie.getRatedBy.toArray.map(userId => {
         userToUserVector.get(currentUser) match {
@@ -38,8 +40,12 @@ class InMemoryCollaborativeFiltering(movieDB: MovieDB, datasetSize: Int) {
         }
       }).sum
 
-      // TODO: Still need to compute the actual predicted rating.
       val phi: Double = normalizationWeight(movie, currentUser)
+      val currentUserMean = userToUserVector.get(currentUser) match {
+        case Some(uv: UserVector) => uv.userVector.computeMean()
+      }
+
+      PredictedRating(movie, currentUserMean + phi * sum)
     })
   }
 
